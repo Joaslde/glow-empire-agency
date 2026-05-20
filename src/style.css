@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --bg-deep: #010B19;
+  --bg-dark: #021833;
+  --glow-mid: #0052A3;
+  --glow-light: #00A3FF;
+  --diamond-deep: #0E3975;
+  --diamond-mid: #1D74E8;
+  --diamond-bright: #7AD3FF;
+  --contrast-dark: #001C3D;
+  --white: #FFFFFF;
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--white);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar premium */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--diamond-deep); border-radius: 2px; }
+
+/* Glassmorphism liquid premium */
+.glass-liquid {
+  background: rgba(1, 11, 25, 0.45);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(122, 211, 255, 0.12);
+  box-shadow:
+    0 0 0 0.5px rgba(122, 211, 255, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-cta {
+  background: rgba(29, 116, 232, 0.1);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgba(122, 211, 255, 0.22);
+  box-shadow:
+    0 0 0 0.5px rgba(122, 211, 255, 0.08),
+    0 4px 24px rgba(0, 82, 163, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: all 0.5s var(--ease-premium);
+}
+.glass-cta:hover {
+  background: rgba(29, 116, 232, 0.18);
+  border-color: rgba(122, 211, 255, 0.35);
+  box-shadow:
+    0 0 0 0.5px rgba(122, 211, 255, 0.14),
+    0 8px 48px rgba(0, 82, 163, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 80px rgba(0, 163, 255, 0.12);
+}
+
+/* Glow text */
+.text-glow {
+  text-shadow: 0 0 40px rgba(0, 163, 255, 0.35), 0 0 80px rgba(0, 82, 163, 0.15);
+}
+.text-glow-subtle {
+  text-shadow: 0 0 30px rgba(0, 163, 255, 0.2);
+}
+
+/* Gradient utilities */
+.gradient-radial-blue {
+  background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 82, 163, 0.25) 0%, transparent 70%);
+}
+
+/* Gradient line */
+.gradient-line {
+  background: linear-gradient(90deg, transparent, rgba(122, 211, 255, 0.3), transparent);
+  height: 1px;
+}
+
+/* Reveal animation classes */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s var(--ease-premium), transform 1s var(--ease-premium);
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-cinematic);
+}
+.reveal-fade.is-visible {
+  opacity: 1;
+}
+
+/* Section stacking is now handled by .stack-section in App.vue */
+
+@theme inline {
+  --color-bg-deep: #010B19;
+  --color-bg-dark: #021833;
+  --color-glow-mid: #0052A3;
+  --color-glow-light: #00A3FF;
+  --color-diamond-deep: #0E3975;
+  --color-diamond-mid: #1D74E8;
+  --color-diamond-bright: #7AD3FF;
+}
