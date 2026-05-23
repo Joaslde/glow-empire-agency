@@ -2,10 +2,11 @@
   <div
     ref="layerRef"
     class="diamond-layer"
-    :class="{ 'is-sticky': isSticky, 'is-hidden': hideForFooter }"
+    :class="{ 'is-sticky': isSticky, 'is-hidden': hideForFooter, 'is-mobile': isMobile }"
     :style="{
       '--diamond-y': diamondY + 'px',
       '--diamond-size': diamondSize + 'px',
+      '--diamond-opacity': diamondOpacity,
     }"
   >
     <!-- Left nav (desktop, only when sticky) -->
@@ -35,8 +36,7 @@
       >
         <TresPerspectiveCamera :position="[0, 0, 4]" :fov="38" />
 
-        <!-- HDRI environment — provides the reflections crystal/transmission materials need to look luminous.
-             Without this, the diamond renders pitch black. -->
+        <!-- HDRI environment — provides the reflections crystal/transmission materials need to look luminous. -->
         <Environment preset="studio" :background="false" :environment-intensity="1.2" />
 
         <!-- Soft abyssal blue ambient on top of env -->
@@ -58,6 +58,26 @@
       <!-- Halo glow behind diamond -->
       <div class="diamond-halo" />
       <div class="diamond-halo-outer" />
+
+      <!-- Decorative arc BEHIND diamond — true semi-circle (SVG arc command),
+           gives a smooth rounded U-shape (not a pointed V).
+           Peak sits at ~30% of orb height (= 70% up the diamond), endpoints stop above bottom. -->
+      <svg
+        class="diamond-arc"
+        viewBox="0 0 100 50"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          class="diamond-arc-path"
+          d="M 0 50 A 50 50 0 0 1 100 50"
+          fill="none"
+        />
+      </svg>
+
+      <!-- Brand text — anchored to the ORB so it stays centered on the diamond
+           even when the layer expands sideways with desktop nav links. -->
+      <div class="diamond-brand-text" aria-hidden="true">Glow Empire</div>
     </div>
 
     <!-- Right nav (desktop, only when sticky) -->
@@ -90,8 +110,10 @@ const layerRef = ref(null)
 const diamondCompRef = ref(null)
 const isSticky = ref(false)
 const hideForFooter = ref(false)
+const isMobile = ref(false)
 const diamondY = ref(9999)
-const diamondSize = ref(180)
+const diamondSize = ref(140)
+const diamondOpacity = ref(0)
 
 let scrollY = 0
 let animFrameId = null
@@ -106,9 +128,16 @@ const rightLinks = [
   { href: '#footer',       label: 'Contact' },
 ]
 
-const STICKY_TOP_PX = 24
-const SIZE_FLOATING = 200    // Bigger at the boundary
-const SIZE_STICKY = 92       // Compact when locked at top
+// Per-viewport sizing
+function getMetrics() {
+  const mobile = window.innerWidth < 768
+  return {
+    mobile,
+    stickyTop: mobile ? 2 : 22,
+    sizeFloating: mobile ? 118 : 160,
+    sizeSticky: mobile ? 54 : 78,
+  }
+}
 
 function scrollTo(selector) {
   const el = document.querySelector(selector)
@@ -120,19 +149,28 @@ function updatePosition() {
   const heroEl = document.querySelector('#hero')
   if (!heroEl) return
   const heroH = heroEl.offsetHeight
-  const halfFloating = SIZE_FLOATING / 2
+
+  const { mobile, stickyTop, sizeFloating, sizeSticky } = getMetrics()
+  isMobile.value = mobile
+  const halfFloating = sizeFloating / 2
 
   const boundaryFromTop = heroH - scrollY
 
-  if (boundaryFromTop > STICKY_TOP_PX + halfFloating) {
+  if (boundaryFromTop > stickyTop + halfFloating) {
     isSticky.value = false
     diamondY.value = boundaryFromTop - halfFloating
-    diamondSize.value = SIZE_FLOATING
+    diamondSize.value = sizeFloating
   } else {
     isSticky.value = true
-    diamondY.value = STICKY_TOP_PX
-    diamondSize.value = SIZE_STICKY
+    diamondY.value = stickyTop
+    diamondSize.value = sizeSticky
   }
+
+  // Fade-in : invisible at top of hero, fully visible by 90% of hero.
+  // Prevents the diamond from peeking up from below the fold on first paint.
+  const fadeStart = heroH * 0.55
+  const fadeEnd = heroH * 0.92
+  diamondOpacity.value = Math.max(0, Math.min(1, (scrollY - fadeStart) / (fadeEnd - fadeStart)))
 
   const footer = document.querySelector('#footer')
   if (footer) {
@@ -147,14 +185,10 @@ function animate(time) {
   const model = comp?.scene
   if (!model) return
 
-  // Slow continuous Y rotation
   const baseRot = time * 0.00035
-  // Subtle scroll-reactive boost
   const scrollRot = scrollY * 0.0009
   model.rotation.y = baseRot + scrollRot
-  // Tiny floating bob on X axis (suggests floating)
   model.rotation.x = Math.sin(time * 0.0004) * 0.04
-  // Faint Z tilt
   model.rotation.z = Math.cos(time * 0.0003) * 0.02
 }
 
@@ -174,7 +208,7 @@ onUnmounted(() => {
 
 <style scoped>
 /* Fixed layer, vertical position controlled by --diamond-y.
-   Diamond starts at boundary (heroH - scrollY) and locks at top when scrolled past. */
+   Diamond fades in as the user scrolls into the hero/section-2 boundary. */
 .diamond-layer {
   position: fixed;
   top: var(--diamond-y, 100vh);
@@ -186,13 +220,13 @@ onUnmounted(() => {
   gap: 2rem;
   pointer-events: none;
   width: max-content;
-  transition: top 0s linear;
+  opacity: var(--diamond-opacity, 0);
+  transition: opacity 0.4s ease;
 }
 
 .diamond-layer.is-hidden {
-  opacity: 0;
+  opacity: 0 !important;
   pointer-events: none;
-  transition: opacity 0.4s ease;
 }
 
 /* === Lateral nav — only visible when sticky, desktop only === */
@@ -269,8 +303,8 @@ onUnmounted(() => {
 .diamond-orb {
   position: relative;
   flex-shrink: 0;
-  width: var(--diamond-size, 200px);
-  height: var(--diamond-size, 200px);
+  width: var(--diamond-size, 140px);
+  height: var(--diamond-size, 140px);
   pointer-events: auto;
   transition:
     width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
@@ -280,6 +314,34 @@ onUnmounted(() => {
 .diamond-canvas {
   width: 100% !important;
   height: 100% !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* === Decorative arc BEHIND diamond ===
+   - true semi-circle stretched into a tall rounded U
+   - peak at orb 30% (= 70% up the diamond from bottom)
+   - endpoints at orb 80% (raised — no longer touches bottom of orb)
+   - width 75% of orb (≈ diamond visual width)
+   - z-index 1 → behind transparent canvas (z-index 2) */
+.diamond-arc {
+  position: absolute;
+  left: 12.5%;
+  top: 30%;
+  width: 75%;
+  height: 50%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  opacity: 0.85;
+}
+.diamond-arc-path {
+  stroke: rgba(122, 211, 255, 0.75);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  fill: none;
+  filter: drop-shadow(0 0 6px rgba(122, 211, 255, 0.6));
+  vector-effect: non-scaling-stroke;
 }
 
 /* Inner intense halo */
@@ -294,7 +356,7 @@ onUnmounted(() => {
     transparent 70%
   );
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   animation: halo-pulse 3.4s ease-in-out infinite;
   filter: blur(10px);
 }
@@ -310,7 +372,7 @@ onUnmounted(() => {
     transparent 60%
   );
   pointer-events: none;
-  z-index: -2;
+  z-index: -1;
   filter: blur(24px);
   animation: halo-pulse 5s ease-in-out infinite reverse;
 }
@@ -326,5 +388,40 @@ onUnmounted(() => {
 }
 .diamond-layer.is-sticky .diamond-halo-outer {
   inset: -40%;
+}
+
+/* === Sticky brand text — anchored to the ORB, NOT the layer ===
+   The layer is a flex row whose width on desktop includes the side nav,
+   so `left:50%` on the layer is NOT the diamond's center. Anchoring to
+   `.diamond-orb` keeps the text perfectly centered under the diamond on
+   all screen sizes. */
+.diamond-brand-text {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: .1px;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow:
+    0 0 14px rgba(122, 211, 255, 0.5),
+    0 0 30px rgba(29, 116, 232, 0.3);
+}
+
+/* Show brand text in sticky state (mobile AND desktop) */
+.diamond-layer.is-sticky .diamond-brand-text {
+  opacity: 1;
+}
+
+/* Sticky state : arc proportions stay tied to the smaller diamond */
+.diamond-layer.is-sticky .diamond-arc {
+  opacity: 0.7;
 }
 </style>

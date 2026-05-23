@@ -29,8 +29,11 @@
 
     <!-- Content -->
     <div class="hero-content">
+      <div class="hero-logo reveal-fade" style="transition-delay: 0.1s">
+        <img src="/logo.jpg" alt="Glow Empire" />
+      </div>
+
       <div class="hero-eyebrow reveal-fade" style="transition-delay: 0.2s">
-        <span class="hero-eyebrow-dot" />
         <span>Glow Empire</span>
       </div>
 
@@ -147,6 +150,26 @@ onUnmounted(() => {
   max-width: 900px;
 }
 
+/* Logo (round, above title) */
+.hero-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(122, 211, 255, 0.3);
+  box-shadow:
+    0 0 32px rgba(122, 211, 255, 0.25),
+    0 0 64px rgba(29, 116, 232, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.hero-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Eyebrow */
 .hero-eyebrow {
   display: flex;
@@ -158,18 +181,6 @@ onUnmounted(() => {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 2.25rem;
-}
-.hero-eyebrow-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #7AD3FF;
-  box-shadow: 0 0 10px #7AD3FF, 0 0 20px rgba(122, 211, 255, 0.6);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.7); }
 }
 
 /* Title */

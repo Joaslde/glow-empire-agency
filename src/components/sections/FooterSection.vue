@@ -28,12 +28,8 @@
     <div class="footer-container">
       <!-- Top: Statement -->
       <div class="footer-statement">
-        <div class="footer-diamond-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4L36 20L20 36L4 20L20 4Z" stroke="#7AD3FF" stroke-width="1" stroke-opacity="0.6"/>
-            <path d="M20 8L32 20L20 32L8 20L20 8Z" fill="rgba(122,211,255,0.08)" stroke="#7AD3FF" stroke-width="0.5" stroke-opacity="0.4"/>
-            <circle cx="20" cy="20" r="3" fill="#7AD3FF" opacity="0.6"/>
-          </svg>
+        <div class="footer-logo-img">
+          <img src="/logo.jpg" alt="Glow Empire" />
         </div>
         <h2 class="footer-headline reveal-up">
           L'empire<br />
@@ -221,14 +217,21 @@ const linkCols = [
   gap: 1.5rem;
 }
 
-.footer-diamond-icon {
-  width: 48px;
-  height: 48px;
-  opacity: 0.7;
+.footer-logo-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(122, 211, 255, 0.25);
+  box-shadow:
+    0 0 24px rgba(122, 211, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.footer-diamond-icon svg {
+.footer-logo-img img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .footer-headline {

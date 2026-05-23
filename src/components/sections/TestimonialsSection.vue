@@ -120,6 +120,7 @@ const columns = computed(() => {
 
 <style scoped>
 .testimonials-section {
+  margin-top:-3rem;
   position: relative;
   background: #010B19;
   padding: 8rem 1.5rem 6rem;

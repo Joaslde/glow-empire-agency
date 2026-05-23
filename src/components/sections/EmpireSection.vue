@@ -155,6 +155,7 @@ const chapters = [
 
 <style scoped>
 .empire-section {
+  margin-top:-3rem;
   position: relative;
   background:
     linear-gradient(to bottom, #021833 0%, #010B19 8%, #010B19 100%);
@@ -199,6 +200,7 @@ const chapters = [
 
 /* Intro */
 .empire-intro {
+ 
   position: relative;
   z-index: 1;
   max-width: 700px;
@@ -227,6 +229,7 @@ const chapters = [
   color: rgba(122, 211, 255, 0.6);
 }
 .section-label-line {
+  
   display: block;
   width: 24px;
   height: 1px;

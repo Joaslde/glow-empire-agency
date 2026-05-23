@@ -11,7 +11,7 @@
         <div class="prot-portrait-wrap reveal-fade">
           <div class="prot-portrait-frame">
             <img
-              src="/hero.png"
+              src="/protagoniste.jpeg"
               alt="Le protagoniste"
               class="prot-portrait-img"
               loading="lazy"

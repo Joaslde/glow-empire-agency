@@ -5,18 +5,18 @@
       v-for="item in navItems"
       :key="item.href"
       :href="item.href"
-      class="radial-item glass-liquid"
+      class="radial-item"
       :class="{ 'item-open': isOpen }"
       :style="getItemStyle(item)"
       :aria-label="item.label"
       @click.prevent="navigate(item.href)"
     >
-      <component :is="item.icon" :size="18" weight="light" />
+      <component :is="item.icon" :size="18" weight="light" class="radial-item-icon" />
     </a>
 
-    <!-- Toggle button -->
+    <!-- Toggle button — same liquid-glass style as the hero CTA -->
     <button
-      class="mobile-menu-btn glass-liquid"
+      class="mobile-menu-btn"
       :class="{ 'btn-open': isOpen }"
       @click="toggle"
       aria-label="Menu"
@@ -53,12 +53,11 @@ const isOpen = ref(false)
 const RADIUS = 105
 
 const navItems = [
-  { href: '#hero',         angle: 0,   icon: PhHouseSimple, label: 'Accueil' },
+  { href: '#hero',         angle: -10,   icon: PhHouseSimple, label: 'Accueil' },
   { href: '#protagonist',  angle: 18,  icon: PhUser,        label: 'Protagoniste' },
-  { href: '#empire',       angle: 36,  icon: PhBuildings,   label: 'Empire' },
-  { href: '#books',        angle: 54,  icon: PhBooks,       label: 'Livres' },
-  { href: '#testimonials', angle: 72,  icon: PhStar,        label: 'Témoignages' },
-  { href: '#footer',       angle: 90,  icon: PhArrowRight,  label: 'Contact' },
+  { href: '#empire',       angle: 47,  icon: PhBuildings,   label: 'Empire' },
+  { href: '#books',        angle: 74,  icon: PhBooks,       label: 'Livres' },
+  { href: '#testimonials', angle: 102,  icon: PhStar,        label: 'Témoignages' },
 ]
 
 function getItemStyle(item) {
@@ -101,6 +100,7 @@ function navigate(href) {
   }
 }
 
+/* Glassmorphism button — same attributes as the hero CTA (rgba white tint, blur+saturate, inset hi-light, soft shadow) */
 .mobile-menu-btn {
   position: absolute;
   top: 0;
@@ -109,14 +109,68 @@ function navigate(href) {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Liquid sheen layers — identical to hero-glass-btn ::before / ::after */
+.mobile-menu-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  pointer-events: none;
+  opacity: 0.8;
+}
+.mobile-menu-btn::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 30% 0%,
+    rgba(255, 255, 255, 0.18) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    0 0 60px rgba(122, 211, 255, 0.15);
+}
+
+/* Burger lines must sit ABOVE the sheen pseudo-elements */
+.btn-line {
+  position: relative;
+  z-index: 1;
 }
 
 .btn-line {
@@ -140,7 +194,8 @@ function navigate(href) {
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Radial items — positioned absolutely; placement via CSS variables --target-x / --target-y */
+/* Radial items — same hero-style liquid glass as the toggle button.
+   Placement via CSS variables --target-x / --target-y. */
 .radial-item {
   position: absolute;
   top: 0;
@@ -149,11 +204,20 @@ function navigate(href) {
   height: 44px;
   margin: 4px;   /* centers the 44px item within the 52px button area */
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 6px 22px rgba(0, 0, 0, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+  overflow: hidden;
   z-index: 1;
   /* Closed: stacked behind the button, invisible */
   transform: translate(0, 0) scale(0);
@@ -163,7 +227,45 @@ function navigate(href) {
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) var(--item-delay, 0s),
     opacity 0.3s ease var(--item-delay, 0s),
     background 0.3s ease,
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Liquid sheen — identical structure to the toggle button */
+.radial-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  pointer-events: none;
+  opacity: 0.8;
+}
+.radial-item::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 30% 0%,
+    rgba(255, 255, 255, 0.18) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Icon must sit above the sheen pseudo-elements */
+.radial-item-icon {
+  position: relative;
+  z-index: 1;
 }
 
 .radial-item.item-open {
@@ -173,7 +275,13 @@ function navigate(href) {
 }
 
 .radial-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(122, 211, 255, 0.4);
   color: #7AD3FF;
-  border-color: rgba(122, 211, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    0 0 40px rgba(122, 211, 255, 0.18);
 }
 </style>

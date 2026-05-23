@@ -64,13 +64,36 @@
 
 ---
 
+### BooksSection — réécriture en deck premium (2026-05-23)
+- [x] Refonte complète : 3 livres (`Prise de parole en public`, `L'entrepreneuriat des femmes`, `Pourquoi un homme ?`) en **deck de cartes empilées**
+- [x] **Drag tactile 1:1** (Pointer Events + capture) — la carte suit le doigt en temps réel, pas de transition tardive
+- [x] **Axis-lock** dès 8px → ne hijacke pas le scroll vertical natif
+- [x] Cartes derrière morphent en temps réel vers leur slot suivant pendant le drag
+- [x] Commit si > 28% swipe, sinon spring-back ; boucle infinie
+- [x] Boutons gauche/droite glassmorphism sur desktop, hint discret bas-droite sur mobile (flèche qui pulse)
+- [x] Dots pagination cachés sur mobile (desktop only)
+- [x] Tailles : mobile carte 260px, tablet 340px, desktop ~30vw
+- [x] Section min-height: 100vh pour ne plus que la CTA passe sous la section suivante
+- [x] Images intégrées : `/livre2.jpg` (entrepreneuriat femmes) et `/livre3.jpeg` (pourquoi un homme) ; livre 1 = gradient fallback
+
+### Assets contenu (2026-05-23)
+- [x] Photo protagoniste réelle (`/protagoniste.jpeg` remplace `/hero.png`)
+- [x] Logo entreprise (`/logo.jpg`) intégré : rond au-dessus de "Glow Empire" dans le hero + remplace le losange SVG du footer
+- [x] Retrait du point lumineux pulsant à côté de "Glow Empire" dans l'eyebrow hero
+
+---
+
 ## [ ] À faire — Priorité haute
 
+### Intégrations annoncées
+- [ ] **Supabase** : client (`src/lib/supabase.js`), auth, DB. Variables `.env.local` à définir avec le user
+- [ ] **Agrégateur de paiement** pour vendre les livres (Stripe à confirmer) : checkout hosted + webhook + livraison PDF
+- [ ] Schémas Supabase à valider avec le user : `users`, `orders`, `books` (CMS ?), `testimonials` ?
+
 ### Contenu réel
-- [ ] Remplacer `hero.png` par une vraie photo du protagoniste
+- [ ] Couverture livre 1 ("Prise de parole en public") quand fournie par le user
 - [ ] Remplacer les placeholders d'images dans EmpireSection par les vraies photos (3 images pour les 3 chapitres)
-- [ ] Remplacer les textes placeholder par le vrai copywriting (s'inspirer du site original glow-empire-boutique.netlify.app)
-- [ ] Ajouter les vraies couvertures de livres
+- [ ] Remplacer les textes placeholder par le vrai copywriting
 - [ ] Configurer les vrais liens (réseaux sociaux, pages internes)
 
 ### Améliorations motion
