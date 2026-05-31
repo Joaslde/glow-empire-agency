@@ -90,7 +90,7 @@ const chapters = [
     id: 'revelation',
     tag: 'Révélation',
     title: 'Révéler la lumière qui sommeille.',
-    image: '/protagoniste.jpeg',
+    image: '/glow-empire1.jpeg',
     gradient: 'linear-gradient(135deg, #0E3975 0%, #1D74E8 100%)',
     paragraphs: [
       'Dans un monde où beaucoup possèdent du talent sans véritable orientation, Glow Empire a choisi de créer un écosystème capable d\'aider une génération entière à croire en sa valeur, développer son influence et marquer son époque.',
@@ -101,7 +101,7 @@ const chapters = [
     id: 'leadership',
     tag: 'Leadership',
     title: 'Propulser les leaders de demain.',
-    image: '/protagoniste.jpeg',
+    image: '/glow-empire2.jpeg',
     gradient: 'linear-gradient(135deg, #0052A3 0%, #00A3FF 60%, #7AD3FF 100%)',
     paragraphs: [
       'Le leadership ne s\'apprend pas dans les manuels. Il se forge dans les décisions difficiles, les prises de parole qui comptent, les moments où la posture fait toute la différence.',
@@ -112,7 +112,7 @@ const chapters = [
     id: 'excellence',
     tag: 'Excellence',
     title: 'Valoriser chaque trajectoire.',
-    image: '/protagoniste.jpeg',
+    image: '/glow-empire3.jpeg',
     gradient: 'linear-gradient(135deg, #001C3D 0%, #0E3975 60%, #1D74E8 100%)',
     paragraphs: [
       'L\'excellence n\'est pas réservée à quelques-uns. Elle est le résultat d\'une méthode, d\'une discipline et d\'un environnement qui exige le meilleur.',

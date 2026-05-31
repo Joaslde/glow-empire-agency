@@ -131,7 +131,7 @@ const books = [
     year: '2022',
     gradient: 'linear-gradient(135deg, #0E3975 0%, #1D74E8 55%, #7AD3FF 100%)',
     shadow: 'linear-gradient(to bottom, rgba(29, 116, 232, 0.5), transparent)',
-    image: null,
+    image: '/livre1.jpeg',
   },
   {
     title: "L'entrepreneuriat des femmes",

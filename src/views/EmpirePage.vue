@@ -49,7 +49,7 @@
               </p>
             </div>
             <div class="epage-block-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Glow Empire — vision" class="epage-block-img" loading="lazy" />
+              <img src="/glow-empire1.jpeg" alt="Glow Empire — vision" class="epage-block-img" loading="lazy" />
               <div class="epage-block-img-overlay" />
             </div>
           </div>
@@ -92,7 +92,7 @@
           <!-- Image + conférence (image + texte empilés, responsive) -->
           <div class="epage-feature">
             <div class="epage-feature-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Conférence des Femmes Leaders du Bénin" class="epage-feature-img" loading="lazy" />
+              <img src="/conference-des-femmes.png" alt="Conférence des Femmes Leaders du Bénin" class="epage-feature-img" loading="lazy" />
               <div class="epage-feature-overlay" />
             </div>
             <div class="epage-feature-caption">

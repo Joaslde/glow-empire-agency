@@ -82,7 +82,7 @@
           <!-- Bloc 3 : image + texte (inversé) -->
           <div class="ppage-block ppage-block-reverse">
             <div class="ppage-block-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Riquier Soussia — coaching" class="ppage-block-img" loading="lazy" />
+              <img src="/protagoniste%202.jpeg" alt="Riquier Soussia — coaching" class="ppage-block-img" loading="lazy" />
               <div class="ppage-block-img-overlay" />
             </div>
             <div class="ppage-block-text">
@@ -118,7 +118,7 @@
           <!-- Bloc 5 : pleine largeur -->
           <div class="ppage-feature">
             <div class="ppage-feature-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Conférence des Femmes Leaders du Bénin" class="ppage-feature-img" loading="lazy" />
+              <img src="/conference-des-femmes.png" alt="Conférence des Femmes Leaders du Bénin" class="ppage-feature-img" loading="lazy" />
               <div class="ppage-feature-overlay" />
             </div>
             <div class="ppage-feature-caption">
