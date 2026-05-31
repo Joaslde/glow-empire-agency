@@ -30,6 +30,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import {
   PhHouseSimple,
   PhUser,
@@ -39,6 +40,12 @@ import {
   PhArrowRight,
 } from '@phosphor-icons/vue'
 
+// staticMode = pages intérieures : les liens renvoient vers la home + ancre.
+const props = defineProps({
+  staticMode: { type: Boolean, default: false },
+})
+
+const router = useRouter()
 const isOpen = ref(false)
 
 /**
@@ -79,6 +86,14 @@ function toggle() {
 
 function navigate(href) {
   isOpen.value = false
+  if (props.staticMode) {
+    router.push('/' + href)
+    setTimeout(() => {
+      const el = document.querySelector(href)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }, 350)
+    return
+  }
   const el = document.querySelector(href)
   if (el) el.scrollIntoView({ behavior: 'smooth' })
 }

@@ -101,10 +101,19 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { TresCanvas } from '@tresjs/core'
 import { Environment } from '@tresjs/cientos'
 import { ACESFilmicToneMapping, SRGBColorSpace } from 'three'
 import DiamondModel from './DiamondModel.vue'
+
+// staticMode = pages intérieures (protagoniste, empire) : pas de #hero,
+// le diamant est sticky immédiatement et les liens renvoient vers la home.
+const props = defineProps({
+  staticMode: { type: Boolean, default: false },
+})
+
+const router = useRouter()
 
 const layerRef = ref(null)
 const diamondCompRef = ref(null)
@@ -140,18 +149,43 @@ function getMetrics() {
 }
 
 function scrollTo(selector) {
+  // Sur une page intérieure, on renvoie vers la home avec l'ancre.
+  if (props.staticMode) {
+    router.push('/' + selector)
+    setTimeout(() => {
+      const el = document.querySelector(selector)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }, 350)
+    return
+  }
   const el = document.querySelector(selector)
   if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
 
 function updatePosition() {
   scrollY = window.scrollY
+  const { mobile, stickyTop, sizeSticky } = getMetrics()
+  isMobile.value = mobile
+
+  // Mode page intérieure : diamant sticky en haut dès le départ, toujours visible.
+  if (props.staticMode) {
+    isSticky.value = true
+    diamondY.value = stickyTop
+    diamondSize.value = sizeSticky
+    diamondOpacity.value = 1
+
+    const footer = document.querySelector('#footer')
+    if (footer) {
+      const fRect = footer.getBoundingClientRect()
+      hideForFooter.value = fRect.top < window.innerHeight * 0.4
+    }
+    return
+  }
+
   const heroEl = document.querySelector('#hero')
   if (!heroEl) return
   const heroH = heroEl.offsetHeight
-
-  const { mobile, stickyTop, sizeFloating, sizeSticky } = getMetrics()
-  isMobile.value = mobile
+  const { sizeFloating } = getMetrics()
   const halfFloating = sizeFloating / 2
 
   const boundaryFromTop = heroH - scrollY

@@ -1,7 +1,8 @@
 <template>
   <div class="detail-page">
-    <!-- Même nav diamant que la landing -->
-    <PersistentDiamondNav />
+    <!-- Même nav diamant que la landing (mode page intérieure) -->
+    <PersistentDiamondNav static-mode />
+    <MobileMenu static-mode />
 
     <main class="detail-main">
 
@@ -64,30 +65,26 @@
             </div>
           </div>
 
-          <!-- Bloc 2 : image + texte (inversé) -->
-          <div class="ppage-block ppage-block-reverse">
-            <div class="ppage-block-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Riquier Soussia — image & communication" class="ppage-block-img" loading="lazy" />
-              <div class="ppage-block-img-overlay" />
-            </div>
-            <div class="ppage-block-text">
-              <div class="ppage-block-num">02</div>
-              <h3 class="ppage-block-title">L'image, la communication, l'influence</h3>
-              <p>
-                Mannequin professionnel, graphiste et stratège marketing, il évolue dans des univers
-                où chaque détail compte — où l'image n'est pas une question de vanité, mais de
-                positionnement, de message et d'impact.
-              </p>
-              <p>
-                Il développe une expertise rare : bâtir des identités fortes, positionner des marques,
-                transformer des talents bruts en leaders visibles, crédibles et impactants.
-                Son approche est à la fois esthétique, stratégique et profondément humaine.
-              </p>
-            </div>
+          <!-- Bloc 2 : texte seul -->
+          <div class="ppage-text-block">
+            <div class="ppage-block-num">02</div>
+            <h3 class="ppage-block-title">L'image, la communication, l'influence</h3>
+            <p>
+              Mannequin professionnel, graphiste et stratège marketing, il évolue dans des univers
+              où chaque détail compte — où l'image n'est pas une question de vanité, mais de
+              positionnement, de message et d'impact. Il développe une expertise rare :
+              bâtir des identités fortes, positionner des marques,
+              transformer des talents bruts en leaders visibles, crédibles et impactants.
+              Son approche est à la fois esthétique, stratégique et profondément humaine.
+            </p>
           </div>
 
-          <!-- Bloc 3 : texte + image -->
-          <div class="ppage-block">
+          <!-- Bloc 3 : image + texte (inversé) -->
+          <div class="ppage-block ppage-block-reverse">
+            <div class="ppage-block-img-wrap">
+              <img src="/protagoniste.jpeg" alt="Riquier Soussia — coaching" class="ppage-block-img" loading="lazy" />
+              <div class="ppage-block-img-overlay" />
+            </div>
             <div class="ppage-block-text">
               <div class="ppage-block-num">03</div>
               <h3 class="ppage-block-title">Coach. Mentor. Bâtisseur.</h3>
@@ -103,57 +100,37 @@
                 de vie en une seule conversation.
               </p>
             </div>
-            <div class="ppage-block-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Riquier Soussia — coaching" class="ppage-block-img" loading="lazy" />
-              <div class="ppage-block-img-overlay" />
-            </div>
           </div>
 
-          <!-- Bloc 4 : image + texte -->
-          <div class="ppage-block ppage-block-reverse">
-            <div class="ppage-block-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Glow Empire — fondateur" class="ppage-block-img" loading="lazy" />
-              <div class="ppage-block-img-overlay" />
-            </div>
-            <div class="ppage-block-text">
-              <div class="ppage-block-num">04</div>
-              <h3 class="ppage-block-title">Fondateur de Glow Empire</h3>
-              <p>
-                Fondateur et Président de Glow Empire, il bâtit un écosystème dédié à la révélation
-                du potentiel, au leadership conscient et à l'excellence personnelle.
-              </p>
-              <p>
-                À travers cette plateforme, il développe des programmes de formation, des conférences,
-                des coachings individuels et des initiatives à fort impact social — toujours avec la même
-                conviction : chaque être humain possède un diamant brut en lui, qui attend d'être taillé.
-              </p>
-            </div>
+          <!-- Bloc 4 : texte seul -->
+          <div class="ppage-text-block">
+            <div class="ppage-block-num">04</div>
+            <h3 class="ppage-block-title">Fondateur de Glow Empire</h3>
+            <p>
+              Fondateur et Président de Glow Empire, il bâtit un écosystème dédié à la révélation
+              du potentiel, au leadership conscient et à l'excellence personnelle.
+              À travers cette plateforme, il développe des programmes de formation, des conférences,
+              des coachings individuels et des initiatives à fort impact social — toujours avec la même
+              conviction : chaque être humain possède un diamant brut en lui, qui attend d'être taillé.
+            </p>
           </div>
 
           <!-- Bloc 5 : pleine largeur -->
-          <div class="ppage-block-full">
-            <div class="ppage-block-full-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Conférence des Femmes Leaders du Bénin" class="ppage-block-full-img" loading="lazy" />
-              <div class="ppage-block-full-overlay" />
-              <div class="ppage-block-full-caption">
-                <div class="ppage-block-num">05</div>
-                <h3 class="ppage-block-title-light">La Conférence des Femmes Leaders du Bénin</h3>
-                <p class="ppage-block-caption-text">
-                  Président du Comité d'Organisation de la Conférence des Femmes Leaders du Bénin,
-                  Riquier Soussia pilote une initiative qui s'impose progressivement comme un
-                  rendez-vous incontournable du leadership féminin en Afrique de l'Ouest.
-                  Cette conférence vise à renforcer le leadership féminin, l'entrepreneuriat,
-                  la confiance en soi et la visibilité des femmes dans les sphères de décision.
-                </p>
-              </div>
+          <div class="ppage-feature">
+            <div class="ppage-feature-img-wrap">
+              <img src="/protagoniste.jpeg" alt="Conférence des Femmes Leaders du Bénin" class="ppage-feature-img" loading="lazy" />
+              <div class="ppage-feature-overlay" />
             </div>
-          </div>
-
-          <!-- Domaines d'expertise -->
-          <div class="ppage-expertise">
-            <h3 class="ppage-expertise-title">Domaines d'expertise</h3>
-            <div class="ppage-tags">
-              <span v-for="tag in expertise" :key="tag" class="ppage-tag">{{ tag }}</span>
+            <div class="ppage-feature-caption">
+              <div class="ppage-block-num">05</div>
+              <h3 class="ppage-block-title">La Conférence des Femmes Leaders du Bénin</h3>
+              <p>
+                Président du Comité d'Organisation de la Conférence des Femmes Leaders du Bénin,
+                Riquier Soussia pilote une initiative qui s'impose progressivement comme un
+                rendez-vous incontournable du leadership féminin en Afrique de l'Ouest.
+                Cette conférence vise à renforcer le leadership féminin, l'entrepreneuriat,
+                la confiance en soi et la visibilité des femmes dans les sphères de décision.
+              </p>
             </div>
           </div>
 
@@ -199,6 +176,7 @@ import { RouterLink, useRouter } from 'vue-router'
 import { useScrollReveal } from '@/composables/useScrollReveal'
 import { useLenis } from '@/composables/useLenis'
 import PersistentDiamondNav from '@/components/ui/PersistentDiamondNav.vue'
+import MobileMenu from '@/components/ui/MobileMenu.vue'
 import FooterSection from '@/components/sections/FooterSection.vue'
 
 const scrollReveal = useScrollReveal()
@@ -223,19 +201,6 @@ function scrollToBooks() {
     }, 300)
   })
 }
-
-const expertise = [
-  'Prise de parole en public',
-  'Personal Branding',
-  'Leadership féminin',
-  'Développement personnel',
-  'Entrepreneuriat',
-  'Coaching stratégique',
-  'Communication d\'influence',
-  'Mannequinat professionnel',
-  'Marketing stratégique',
-  'Identité de marque',
-]
 </script>
 
 <style scoped>
@@ -455,86 +420,64 @@ const expertise = [
   background: linear-gradient(to bottom, transparent 50%, rgba(1,11,25,0.5) 100%);
 }
 
-/* Bloc pleine largeur */
-.ppage-block-full {
-  width: 100%;
+/* Bloc texte seul (pas d'image — évite deux images adjacentes) */
+.ppage-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 780px;
 }
-.ppage-block-full-img-wrap {
-  position: relative;
+.ppage-text-block p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.52);
+  font-weight: 300;
+}
+
+/* Bloc feature (image + texte empilés, responsive) */
+.ppage-feature {
   border-radius: 1.5rem;
   overflow: hidden;
   border: 1px solid rgba(122, 211, 255, 0.1);
-  aspect-ratio: 16/7;
-  min-height: 320px;
+  background: rgba(2, 24, 51, 0.35);
 }
-.ppage-block-full-img {
+.ppage-feature-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 360px;
+  overflow: hidden;
+}
+.ppage-feature-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
-  filter: brightness(0.6) contrast(1.05);
+  display: block;
+  filter: brightness(0.75) contrast(1.05);
 }
-.ppage-block-full-overlay {
+.ppage-feature-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(1,11,25,0.85) 0%,
-    rgba(1,11,25,0.3) 50%,
-    rgba(1,11,25,0.1) 100%
-  );
+  background: linear-gradient(to bottom, transparent 40%, rgba(1,11,25,0.85) 100%);
 }
-.ppage-block-full-caption {
-  position: absolute;
-  inset: 0;
+.ppage-feature-caption {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 1rem;
-  padding: 2.5rem 3rem;
-  max-width: 560px;
+  padding: 2rem 1.75rem 2.25rem;
 }
-.ppage-block-title-light {
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-.ppage-block-caption-text {
-  font-size: 0.92rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.6);
+.ppage-feature-caption p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
   font-weight: 300;
 }
 
-/* Expertise */
-.ppage-expertise {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-.ppage-expertise-title {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(122, 211, 255, 0.5);
-}
-.ppage-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-.ppage-tag {
-  padding: 0.4rem 0.9rem;
-  border-radius: 100px;
-  background: rgba(122,211,255,0.06);
-  border: 1px solid rgba(122,211,255,0.12);
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.5);
-  font-weight: 300;
-  letter-spacing: 0.02em;
+@media (min-width: 768px) {
+  .ppage-feature-caption {
+    padding: 2.5rem 3rem 2.75rem;
+  }
 }
 
 /* Citation */

@@ -19,32 +19,7 @@
 
       <!-- Carousel -->
       <div class="carousel-wrap reveal-up" style="transition-delay:0.25s">
-        <!-- Carte active -->
-        <div class="carousel-track" :style="trackStyle">
-          <div
-            v-for="(t, i) in testimonials"
-            :key="t.name"
-            class="carousel-slide"
-          >
-            <div class="testimonial-card glass-liquid" :class="{ active: i === current }">
-              <div class="testimonial-stars">
-                <span v-for="s in 5" :key="s" class="star">★</span>
-              </div>
-              <p class="testimonial-quote">{{ t.quote }}</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar" :style="{ background: t.avatarBg }">
-                  {{ t.name[0] }}
-                </div>
-                <div>
-                  <div class="testimonial-name">{{ t.name }}</div>
-                  <div class="testimonial-role">{{ t.role }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Flèches -->
+        <!-- Flèches (desktop) -->
         <button class="carousel-arrow arrow-left glass-liquid" @click="prev" aria-label="Précédent">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,6 +30,33 @@
             <path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
+
+        <!-- Viewport : overflow caché desktop / scroll horizontal mobile -->
+        <div ref="viewportRef" class="carousel-viewport" @scroll="onScroll">
+          <div class="carousel-track" :style="trackStyle">
+            <div
+              v-for="(t, i) in testimonials"
+              :key="t.name"
+              class="carousel-slide"
+            >
+              <div class="testimonial-card glass-liquid">
+                <div class="testimonial-stars">
+                  <span v-for="s in 5" :key="s" class="star">★</span>
+                </div>
+                <p class="testimonial-quote">{{ t.quote }}</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" :style="{ background: t.avatarBg }">
+                    {{ t.name[0] }}
+                  </div>
+                  <div>
+                    <div class="testimonial-name">{{ t.name }}</div>
+                    <div class="testimonial-role">{{ t.role }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Dots -->
         <div class="carousel-dots">
@@ -73,9 +75,23 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const current = ref(0)
+const viewportRef = ref(null)
+const isMobile = ref(false)
+let scrollTimer = null
+
+function checkMobile() {
+  isMobile.value = window.innerWidth < 768
+}
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
 
 const testimonials = [
   {
@@ -116,15 +132,30 @@ const testimonials = [
   },
 ]
 
-const trackStyle = computed(() => ({
-  transform: `translateX(-${current.value * 100}%)`,
-}))
+// Desktop : le track se déplace par transform. Mobile : scroll natif (pas de transform).
+const trackStyle = computed(() => {
+  if (isMobile.value) return {}
+  return { transform: `translateX(-${current.value * 100}%)` }
+})
 
-function prev() {
-  current.value = (current.value - 1 + testimonials.length) % testimonials.length
+function goTo(i) {
+  current.value = (i + testimonials.length) % testimonials.length
+  if (isMobile.value && viewportRef.value) {
+    const vp = viewportRef.value
+    vp.scrollTo({ left: current.value * vp.clientWidth, behavior: 'smooth' })
+  }
 }
-function next() {
-  current.value = (current.value + 1) % testimonials.length
+function prev() { goTo(current.value - 1) }
+function next() { goTo(current.value + 1) }
+
+// Sur mobile : sync l'index actif avec la position de scroll (pour les dots).
+function onScroll() {
+  if (!isMobile.value || !viewportRef.value) return
+  clearTimeout(scrollTimer)
+  scrollTimer = setTimeout(() => {
+    const vp = viewportRef.value
+    current.value = Math.round(vp.scrollLeft / vp.clientWidth)
+  }, 80)
 }
 </script>
 
@@ -202,17 +233,40 @@ function next() {
   position: relative;
 }
 
+/* Viewport : une seule carte visible, le reste est coupé */
+.carousel-viewport {
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
 .carousel-track {
   display: flex;
   transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: visible;
 }
 
 .carousel-slide {
   flex: 0 0 100%;
   width: 100%;
-  padding: 0 0.25rem;
   box-sizing: border-box;
+}
+
+/* Mobile : scroll horizontal natif avec scroll-snap, une carte centrée à la fois */
+@media (max-width: 767px) {
+  .carousel-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .carousel-viewport::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel-track {
+    transition: none;
+  }
+  .carousel-slide {
+    scroll-snap-align: center;
+  }
 }
 
 .testimonial-card {
@@ -304,9 +358,9 @@ function next() {
   .arrow-left { left: -48px; }
   .arrow-right { right: -48px; }
 }
-@media (max-width: 720px) {
-  .arrow-left { left: -20px; }
-  .arrow-right { right: -20px; }
+/* Mobile : flèches cachées, on défile au scroll horizontal */
+@media (max-width: 767px) {
+  .carousel-arrow { display: none; }
   .testimonial-card { padding: 1.75rem 1.25rem; }
 }
 

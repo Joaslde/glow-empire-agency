@@ -357,6 +357,14 @@ const chapters = [
   font-weight: 300;
 }
 
+/* Sur desktop : texte justifié pour équilibrer le bloc avec la hauteur de la photo */
+@media (min-width: 1024px) {
+  .empire-chapter-para {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
+
 /* Citation finale */
 .empire-closing {
   position: relative;

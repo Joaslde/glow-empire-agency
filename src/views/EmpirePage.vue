@@ -1,7 +1,8 @@
 <template>
   <div class="detail-page">
-    <!-- Même nav diamant que la landing -->
-    <PersistentDiamondNav />
+    <!-- Même nav diamant que la landing (mode page intérieure) -->
+    <PersistentDiamondNav static-mode />
+    <MobileMenu static-mode />
 
     <main class="detail-main">
 
@@ -53,22 +54,16 @@
             </div>
           </div>
 
-          <!-- Valeurs : image + liste -->
-          <div class="epage-block epage-block-reverse">
-            <div class="epage-block-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Glow Empire — valeurs" class="epage-block-img" loading="lazy" />
-              <div class="epage-block-img-overlay" />
-            </div>
-            <div class="epage-block-text">
-              <h2 class="epage-section-title">Nos piliers fondamentaux</h2>
-              <div class="epage-valeurs-list">
-                <div v-for="v in valeurs" :key="v.titre" class="epage-valeur">
-                  <div class="epage-valeur-header">
-                    <span class="epage-valeur-num">{{ v.num }}</span>
-                    <h4 class="epage-valeur-titre">{{ v.titre }}</h4>
-                  </div>
-                  <p class="epage-valeur-desc">{{ v.desc }}</p>
+          <!-- Valeurs : liste seule (pas d'image, évite l'adjacence) -->
+          <div class="epage-valeurs-block">
+            <h2 class="epage-section-title">Nos piliers fondamentaux</h2>
+            <div class="epage-valeurs-grid">
+              <div v-for="v in valeurs" :key="v.titre" class="epage-valeur">
+                <div class="epage-valeur-header">
+                  <span class="epage-valeur-num">{{ v.num }}</span>
+                  <h4 class="epage-valeur-titre">{{ v.titre }}</h4>
                 </div>
+                <p class="epage-valeur-desc">{{ v.desc }}</p>
               </div>
             </div>
           </div>
@@ -94,23 +89,23 @@
             </div>
           </div>
 
-          <!-- Image pleine largeur + conférence -->
-          <div class="epage-block-full">
-            <div class="epage-block-full-img-wrap">
-              <img src="/protagoniste.jpeg" alt="Conférence des Femmes Leaders du Bénin" class="epage-block-full-img" loading="lazy" />
-              <div class="epage-block-full-overlay" />
-              <div class="epage-block-full-caption">
-                <div class="section-label">
-                  <span class="section-label-line" />
-                  <span>Événement phare</span>
-                </div>
-                <h3 class="epage-block-full-title">La Conférence des Femmes Leaders du Bénin</h3>
-                <p class="epage-block-full-desc">
-                  Un rendez-vous incontournable du leadership féminin en Afrique de l'Ouest,
-                  qui vise à renforcer l'entrepreneuriat, la confiance en soi et la visibilité
-                  des femmes dans les sphères de décision.
-                </p>
+          <!-- Image + conférence (image + texte empilés, responsive) -->
+          <div class="epage-feature">
+            <div class="epage-feature-img-wrap">
+              <img src="/protagoniste.jpeg" alt="Conférence des Femmes Leaders du Bénin" class="epage-feature-img" loading="lazy" />
+              <div class="epage-feature-overlay" />
+            </div>
+            <div class="epage-feature-caption">
+              <div class="section-label">
+                <span class="section-label-line" />
+                <span>Événement phare</span>
               </div>
+              <h3 class="epage-feature-title">La Conférence des Femmes Leaders du Bénin</h3>
+              <p class="epage-feature-desc">
+                Un rendez-vous incontournable du leadership féminin en Afrique de l'Ouest,
+                qui vise à renforcer l'entrepreneuriat, la confiance en soi et la visibilité
+                des femmes dans les sphères de décision.
+              </p>
             </div>
           </div>
 
@@ -168,6 +163,7 @@ import { RouterLink, useRouter } from 'vue-router'
 import { useScrollReveal } from '@/composables/useScrollReveal'
 import { useLenis } from '@/composables/useLenis'
 import PersistentDiamondNav from '@/components/ui/PersistentDiamondNav.vue'
+import MobileMenu from '@/components/ui/MobileMenu.vue'
 import FooterSection from '@/components/sections/FooterSection.vue'
 
 const scrollReveal = useScrollReveal()
@@ -422,20 +418,24 @@ const publics = [
   background: linear-gradient(to bottom, transparent 50%, rgba(1,11,25,0.5) 100%);
 }
 
-/* Valeurs liste -->  */
-.epage-valeurs-list {
+/* Valeurs (liste seule) */
+.epage-valeurs-block {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+}
+.epage-valeurs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem 3rem;
+}
+@media (min-width: 700px) {
+  .epage-valeurs-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .epage-valeur {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid rgba(122,211,255,0.07);
 }
-.epage-valeur:last-child { border-bottom: none; padding-bottom: 0; }
 .epage-valeur-header {
   display: flex;
   align-items: center;
@@ -504,57 +504,56 @@ const publics = [
   font-weight: 300;
 }
 
-/* Bloc pleine largeur -->  */
-.epage-block-full {
-  width: 100%;
-}
-.epage-block-full-img-wrap {
-  position: relative;
+/* Bloc feature (image + texte empilés, responsive) */
+.epage-feature {
   border-radius: 1.5rem;
   overflow: hidden;
   border: 1px solid rgba(122, 211, 255, 0.1);
-  aspect-ratio: 16/7;
-  min-height: 300px;
+  background: rgba(2, 24, 51, 0.35);
 }
-.epage-block-full-img {
+.epage-feature-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 360px;
+  overflow: hidden;
+}
+.epage-feature-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
-  filter: brightness(0.55) contrast(1.05);
+  display: block;
+  filter: brightness(0.7) contrast(1.05);
 }
-.epage-block-full-overlay {
+.epage-feature-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(1,11,25,0.9) 0%,
-    rgba(1,11,25,0.35) 55%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, transparent 40%, rgba(1,11,25,0.85) 100%);
 }
-.epage-block-full-caption {
-  position: absolute;
-  inset: 0;
+.epage-feature-caption {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 1rem;
-  padding: 2.5rem 3rem;
-  max-width: 580px;
+  padding: 2rem 1.75rem 2.25rem;
 }
-.epage-block-full-title {
+.epage-feature-title {
   font-size: clamp(1.2rem, 2.5vw, 1.7rem);
   font-weight: 600;
   color: #fff;
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
-.epage-block-full-desc {
-  font-size: 0.92rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.6);
+.epage-feature-desc {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
   font-weight: 300;
+}
+@media (min-width: 768px) {
+  .epage-feature-caption {
+    padding: 2.5rem 3rem 2.75rem;
+  }
 }
 
 /* Public -->  */
