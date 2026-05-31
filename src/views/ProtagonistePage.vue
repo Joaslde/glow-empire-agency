@@ -412,7 +412,6 @@ function scrollToBooks() {
   object-fit: cover;
   object-position: top;
   display: block;
-  filter: brightness(0.85) contrast(1.05);
 }
 .ppage-block-img-overlay {
   position: absolute;
@@ -444,22 +443,36 @@ function scrollToBooks() {
 .ppage-feature-img-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
-  max-height: 360px;
   overflow: hidden;
+  background: #021326;
 }
 .ppage-feature-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  object-fit: contain;
   display: block;
-  filter: brightness(0.75) contrast(1.05);
 }
 .ppage-feature-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(1,11,25,0.85) 100%);
+  display: none;
+}
+
+/* Desktop : recadrage cinématique, plein cadre */
+@media (min-width: 768px) {
+  .ppage-feature-img-wrap {
+    aspect-ratio: 16/9;
+    max-height: 420px;
+  }
+  .ppage-feature-img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .ppage-feature-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 45%, rgba(1,11,25,0.7) 100%);
+  }
 }
 .ppage-feature-caption {
   display: flex;

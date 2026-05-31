@@ -32,7 +32,7 @@
     >
       <div class="empire-visual-col">
         <div class="empire-visual-sticky">
-          <div class="empire-visual-frame" :style="{ background: chapter.gradient }">
+          <div class="empire-visual-frame">
             <img
               :src="chapter.image"
               :alt="chapter.title"
@@ -91,7 +91,6 @@ const chapters = [
     tag: 'Révélation',
     title: 'Révéler la lumière qui sommeille.',
     image: '/glow-empire1.jpeg',
-    gradient: 'linear-gradient(135deg, #0E3975 0%, #1D74E8 100%)',
     paragraphs: [
       'Dans un monde où beaucoup possèdent du talent sans véritable orientation, Glow Empire a choisi de créer un écosystème capable d\'aider une génération entière à croire en sa valeur, développer son influence et marquer son époque.',
       'Nous croyons que chaque personne possède une lumière unique, capable d\'impacter le monde lorsqu\'elle est bien développée, bien encadrée et bien positionnée. Notre rôle : créer les conditions pour que cette lumière devienne un rayonnement.',
@@ -102,7 +101,6 @@ const chapters = [
     tag: 'Leadership',
     title: 'Propulser les leaders de demain.',
     image: '/glow-empire2.jpeg',
-    gradient: 'linear-gradient(135deg, #0052A3 0%, #00A3FF 60%, #7AD3FF 100%)',
     paragraphs: [
       'Le leadership ne s\'apprend pas dans les manuels. Il se forge dans les décisions difficiles, les prises de parole qui comptent, les moments où la posture fait toute la différence.',
       'À travers nos programmes et conférences — dont la Conférence des Femmes Leaders du Bénin — Glow Empire crée des espaces où les leaders se révèlent à eux-mêmes et au monde.',
@@ -113,7 +111,6 @@ const chapters = [
     tag: 'Excellence',
     title: 'Valoriser chaque trajectoire.',
     image: '/glow-empire3.jpeg',
-    gradient: 'linear-gradient(135deg, #001C3D 0%, #0E3975 60%, #1D74E8 100%)',
     paragraphs: [
       'L\'excellence n\'est pas réservée à quelques-uns. Elle est le résultat d\'une méthode, d\'une discipline et d\'un environnement qui exige le meilleur.',
       'Chez Glow Empire, nous ne publions, ne transmettons et ne construisons que ce qui élève véritablement. Chaque livre, chaque programme, chaque interaction est pensé pour l\'impact réel — pas pour la performance apparente.',
@@ -272,14 +269,12 @@ const chapters = [
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.45;
-  mix-blend-mode: luminosity;
 }
 
 .empire-visual-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, rgba(1, 11, 25, 0.7) 100%);
+  background: linear-gradient(to bottom, transparent 55%, rgba(1, 11, 25, 0.55) 100%);
 }
 
 .empire-visual-corner-tl,

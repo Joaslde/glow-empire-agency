@@ -410,12 +410,11 @@ const publics = [
   height: 100%;
   object-fit: cover;
   object-position: top;
-  filter: brightness(0.75) contrast(1.05);
 }
 .epage-block-img-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(1,11,25,0.5) 100%);
+  background: linear-gradient(to bottom, transparent 65%, rgba(1,11,25,0.4) 100%);
 }
 
 /* Valeurs (liste seule) */
@@ -514,22 +513,36 @@ const publics = [
 .epage-feature-img-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
-  max-height: 360px;
   overflow: hidden;
+  background: #021326;
 }
 .epage-feature-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  object-fit: contain;
   display: block;
-  filter: brightness(0.7) contrast(1.05);
 }
 .epage-feature-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(1,11,25,0.85) 100%);
+  display: none;
+}
+
+/* Desktop : recadrage cinématique, plein cadre */
+@media (min-width: 768px) {
+  .epage-feature-img-wrap {
+    aspect-ratio: 16/9;
+    max-height: 420px;
+  }
+  .epage-feature-img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .epage-feature-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 45%, rgba(1,11,25,0.7) 100%);
+  }
 }
 .epage-feature-caption {
   display: flex;

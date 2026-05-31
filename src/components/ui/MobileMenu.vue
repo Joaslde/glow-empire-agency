@@ -12,6 +12,7 @@
       @click.prevent="navigate(item.href)"
     >
       <component :is="item.icon" :size="18" weight="light" class="radial-item-icon" />
+      <span class="radial-item-label">{{ item.label }}</span>
     </a>
 
     <!-- Toggle button — same liquid-glass style as the hero CTA -->
@@ -232,7 +233,7 @@ function navigate(href) {
   justify-content: center;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1;
   /* Closed: stacked behind the button, invisible */
   transform: translate(0, 0) scale(0);
@@ -281,6 +282,30 @@ function navigate(href) {
 .radial-item-icon {
   position: relative;
   z-index: 1;
+}
+
+/* Petit label sous chaque icône — décrit la page ciblée */
+.radial-item-label {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 1px 6px rgba(1, 11, 25, 0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease var(--item-delay, 0s);
+}
+.radial-item.item-open .radial-item-label {
+  opacity: 1;
+}
+.radial-item:hover .radial-item-label {
+  color: #7AD3FF;
 }
 
 .radial-item.item-open {
