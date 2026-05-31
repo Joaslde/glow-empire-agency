@@ -1,6 +1,5 @@
 <template>
   <section id="protagonist" class="protagonist-section">
-    <!-- Background -->
     <div class="prot-bg">
       <div class="prot-bg-gradient" />
     </div>
@@ -12,19 +11,18 @@
           <div class="prot-portrait-frame">
             <img
               src="/protagoniste.jpeg"
-              alt="Le protagoniste"
+              alt="Riquier Soussia"
               class="prot-portrait-img"
               loading="lazy"
             />
             <div class="prot-portrait-overlay" />
           </div>
-          <!-- Floating stats -->
           <div class="prot-stat prot-stat-1 glass-liquid reveal-up" style="transition-delay:0.3s">
-            <span class="prot-stat-number">+12k</span>
-            <span class="prot-stat-label">membres</span>
+            <span class="prot-stat-number">+100</span>
+            <span class="prot-stat-label">personnes accompagnées</span>
           </div>
           <div class="prot-stat prot-stat-2 glass-liquid reveal-up" style="transition-delay:0.5s">
-            <span class="prot-stat-number">4</span>
+            <span class="prot-stat-number">3</span>
             <span class="prot-stat-label">livres publiés</span>
           </div>
         </div>
@@ -32,44 +30,35 @@
 
       <!-- Right: Story -->
       <div class="prot-story-col">
-        <!-- Label -->
         <div class="section-label reveal-fade" style="transition-delay:0.1s">
           <span class="section-label-line" />
           <span>Le protagoniste</span>
         </div>
 
         <h2 class="prot-title reveal-up" style="transition-delay:0.2s">
-          Bâtir un empire<br />
-          <span class="prot-title-accent">demande une vision.</span>
+          L'homme derrière<br />
+          <span class="prot-title-accent">la vision.</span>
         </h2>
 
         <div class="prot-story-text">
           <p class="reveal-up" style="transition-delay:0.35s">
-            Je suis <strong>Glow Empire</strong> — entrepreneur, auteur, et architecte de systèmes de croissance.
-            Depuis plus de 7 ans, j'aide des entrepreneurs ambitieux à transformer leur présence,
-            leur business et leur mindset.
+            <strong>Riquier Soussia</strong> n'est pas simplement un auteur. C'est un architecte de destins —
+            juriste de formation, entrepreneur accompli, coach certifié et stratège du développement humain,
+            reconnu pour son engagement en faveur du leadership et de l'autonomisation des jeunes en Afrique.
           </p>
           <p class="reveal-up" style="transition-delay:0.5s">
-            Ce n'est pas du coaching classique. C'est une méthode forgée dans la réalité —
-            des années d'expériences, d'échecs assumés, et de victoires bâties méthodiquement.
+            Depuis plus d'une décennie, il décrypte les mécanismes invisibles qui séparent ceux qui rêvent
+            de ceux qui accomplissent. Sa conviction est profonde et simple à la fois :
+            chaque être humain possède un diamant brut en lui — il attend d'être révélé.
           </p>
           <p class="reveal-up" style="transition-delay:0.65s">
-            Mon travail : te donner les outils, la clarté et l'élan pour construire quelque chose
-            de réel. Un empire qui porte ta signature.
+            À travers Glow Empire, il partage sans réserve les principes qui ont forgé sa trajectoire —
+            des méthodes nées de l'expérience, du terrain, et d'une obsession constante pour l'excellence.
           </p>
         </div>
 
-        <!-- Credentials -->
-        <div class="prot-credentials reveal-up" style="transition-delay:0.75s">
-          <div v-for="item in credentials" :key="item.label" class="prot-cred-item">
-            <span class="prot-cred-value">{{ item.value }}</span>
-            <span class="prot-cred-label">{{ item.label }}</span>
-          </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="reveal-up" style="transition-delay:0.9s">
-          <button class="glass-cta prot-cta">
+        <div class="reveal-up" style="transition-delay:0.75s">
+          <button class="glass-cta prot-cta" @click="goToProtagoniste">
             <span>Mon parcours complet</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -82,24 +71,24 @@
 </template>
 
 <script setup>
-const credentials = [
-  { value: '7+', label: 'années d\'expérience' },
-  { value: '12k+', label: 'entrepreneurs accompagnés' },
-  { value: '4', label: 'bestsellers publiés' },
-  { value: '98%', label: 'taux de satisfaction' },
-]
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToProtagoniste() {
+  router.push('/protagoniste')
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 </script>
 
 <style scoped>
 .protagonist-section {
   position: relative;
-  background:
-    linear-gradient(to bottom, #0a2548 0%, #021833 40%, #021833 100%);
+  background: linear-gradient(to bottom, #0a2548 0%, #021833 40%, #021833 100%);
   padding: 6rem 1.5rem 6rem;
   overflow: hidden;
 }
 
-/* Top accent line — visual contrast cue */
 .protagonist-section::before {
   content: '';
   position: absolute;
@@ -138,7 +127,6 @@ const credentials = [
   }
 }
 
-/* Portrait column */
 .prot-portrait-col {
   display: flex;
   justify-content: center;
@@ -172,7 +160,6 @@ const credentials = [
   background: linear-gradient(to top, rgba(2, 24, 51, 0.7) 0%, transparent 50%);
 }
 
-/* Floating stats */
 .prot-stat {
   position: absolute;
   padding: 0.75rem 1.1rem;
@@ -202,7 +189,6 @@ const credentials = [
   letter-spacing: 0.04em;
 }
 
-/* Story column */
 .prot-story-col {
   display: flex;
   flex-direction: column;
@@ -254,34 +240,6 @@ const credentials = [
 .prot-story-text strong {
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
-}
-
-/* Credentials */
-.prot-credentials {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  padding: 1.5rem;
-  border: 1px solid rgba(122, 211, 255, 0.08);
-  border-radius: 1rem;
-  background: rgba(1, 11, 25, 0.3);
-}
-.prot-cred-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.prot-cred-value {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #ffffff;
-  line-height: 1;
-}
-.prot-cred-label {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 300;
-  letter-spacing: 0.02em;
 }
 
 .prot-cta {

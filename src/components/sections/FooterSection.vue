@@ -39,8 +39,8 @@
           Rejoins des milliers d'entrepreneurs qui construisent quelque chose de réel.
         </p>
         <div class="footer-cta-wrap reveal-up" style="transition-delay:0.35s">
-          <button class="glass-cta footer-cta-btn">
-            <span>Rejoindre la communauté</span>
+          <button class="glass-cta footer-cta-btn" @click="scrollTo('#books')">
+            <span>Découvrir les livres</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -64,7 +64,7 @@
             Personal branding, business coaching, et outils de croissance pour entrepreneurs ambitieux.
           </p>
           <div class="footer-socials">
-            <a v-for="s in socials" :key="s.label" :href="s.href" class="footer-social-btn glass-liquid" :aria-label="s.label">
+            <a v-for="s in socials" :key="s.label" :href="s.href" target="_blank" rel="noopener" class="footer-social-btn glass-liquid" :aria-label="s.label">
               <component :is="s.icon" :size="16" weight="light" />
             </a>
           </div>
@@ -74,7 +74,9 @@
           <h4 class="footer-col-title">{{ col.title }}</h4>
           <ul class="footer-link-list">
             <li v-for="link in col.links" :key="link.label">
-              <a :href="link.href" class="footer-link">{{ link.label }}</a>
+              <RouterLink v-if="link.route" :to="link.route" class="footer-link">{{ link.label }}</RouterLink>
+              <a v-else-if="link.hash" href="#" class="footer-link" @click.prevent="scrollTo(link.hash)">{{ link.label }}</a>
+              <a v-else :href="link.href" class="footer-link">{{ link.label }}</a>
             </li>
           </ul>
         </div>
@@ -88,11 +90,7 @@
             © {{ currentYear }} Glow Empire. Tous droits réservés.
           </span>
           <div class="footer-bottom-links">
-            <a href="#" class="footer-bottom-link">Mentions légales</a>
-            <span class="footer-bottom-sep">·</span>
-            <a href="#" class="footer-bottom-link">Confidentialité</a>
-            <span class="footer-bottom-sep">·</span>
-            <a href="#" class="footer-bottom-link">CGV</a>
+            <a href="mailto:contact@glowempire.com" class="footer-bottom-link">contact@glowempire.com</a>
           </div>
         </div>
       </div>
@@ -102,14 +100,15 @@
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { useRouter, RouterLink } from 'vue-router'
 import {
   PhInstagramLogo,
-  PhXLogo,
   PhYoutubeLogo,
   PhLinkedinLogo,
 } from '@phosphor-icons/vue'
 
 const currentYear = computed(() => new Date().getFullYear())
+const router = useRouter()
 
 const isMobile = ref(false)
 function checkMobile() {
@@ -125,39 +124,47 @@ onUnmounted(() => {
   window.removeEventListener('resize', checkMobile)
 })
 
+function scrollTo(hash) {
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(() => {
+        const el = document.querySelector(hash)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 300)
+    })
+  } else {
+    const el = document.querySelector(hash)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
 const socials = [
-  { label: 'Instagram', icon: PhInstagramLogo, href: '#' },
-  { label: 'Twitter / X', icon: PhXLogo, href: '#' },
-  { label: 'YouTube', icon: PhYoutubeLogo, href: '#' },
-  { label: 'LinkedIn', icon: PhLinkedinLogo, href: '#' },
+  { label: 'Instagram', icon: PhInstagramLogo, href: 'https://instagram.com' },
+  { label: 'YouTube', icon: PhYoutubeLogo, href: 'https://youtube.com' },
+  { label: 'LinkedIn', icon: PhLinkedinLogo, href: 'https://linkedin.com' },
 ]
 
 const linkCols = [
   {
     title: 'L\'empire',
     links: [
-      { label: 'Le protagoniste', href: '#protagonist' },
-      { label: 'La vision', href: '#empire' },
-      { label: 'La méthode', href: '#empire' },
-      { label: 'Témoignages', href: '#testimonials' },
+      { label: 'Riquier Soussia', route: '/protagoniste' },
+      { label: 'Glow Empire', route: '/empire' },
+      { label: 'Témoignages', hash: '#testimonials' },
     ],
   },
   {
     title: 'Les livres',
     links: [
-      { label: 'Glow Up', href: '#books' },
-      { label: 'Empire Mindset', href: '#books' },
-      { label: 'Personal Brand', href: '#books' },
-      { label: 'Système Empire', href: '#books' },
+      { label: 'Prise de parole en public', hash: '#books' },
+      { label: 'Leadership féminin', hash: '#books' },
+      { label: 'Pourquoi un homme', hash: '#books' },
     ],
   },
   {
-    title: 'Rejoindre',
+    title: 'Contact',
     links: [
-      { label: 'La communauté', href: '#' },
-      { label: 'Le coaching', href: '#' },
-      { label: 'Les formations', href: '#' },
-      { label: 'Contact', href: '#' },
+      { label: 'contact@glowempire.com', href: 'mailto:contact@glowempire.com' },
     ],
   },
 ]

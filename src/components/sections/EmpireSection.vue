@@ -1,15 +1,13 @@
 <template>
   <section id="empire" class="empire-section">
-    <!-- Background -->
     <div class="empire-bg">
       <div class="empire-bg-glow" />
       <div class="empire-grid-lines" />
     </div>
 
-    <!-- Top divider line for stacking visual cue -->
     <div class="empire-top-line" />
 
-    <!-- Centered intro -->
+    <!-- Intro centrée -->
     <div class="empire-intro">
       <div class="section-label reveal-fade">
         <span class="section-label-line" />
@@ -17,26 +15,24 @@
       </div>
       <h2 class="empire-title reveal-up" style="transition-delay:0.15s">
         Un écosystème<br />
-        <span class="empire-title-accent">bâti pour durer.</span>
+        <span class="empire-title-accent">bâti pour révéler.</span>
       </h2>
       <p class="empire-subtitle reveal-up" style="transition-delay:0.3s">
-        Glow Empire n'est pas une marque. C'est une infrastructure —
-        des outils, des communautés, et des méthodes qui fonctionnent ensemble.
+        Glow Empire n'est pas une marque. C'est une infrastructure dédiée à la révélation des potentiels,
+        à la construction de l'image et à l'accompagnement des leaders de demain.
       </p>
     </div>
 
-    <!-- Chapters : photo sticky d'un côté, texte qui défile de l'autre -->
+    <!-- Chapitres -->
     <div
       v-for="(chapter, idx) in chapters"
       :key="chapter.id"
       class="empire-chapter"
       :class="{ 'chapter-reverse': idx % 2 === 1 }"
     >
-      <!-- Pinned visual column -->
       <div class="empire-visual-col">
         <div class="empire-visual-sticky">
           <div class="empire-visual-frame" :style="{ background: chapter.gradient }">
-            <!-- Placeholder image with gradient overlay -->
             <img
               :src="chapter.image"
               :alt="chapter.title"
@@ -46,7 +42,6 @@
             <div class="empire-visual-overlay" />
             <div class="empire-visual-corner-tl" />
             <div class="empire-visual-corner-br" />
-            <!-- Chapter number badge -->
             <div class="empire-visual-badge">
               <span class="empire-visual-badge-num">0{{ idx + 1 }}</span>
               <span class="empire-visual-badge-tag">{{ chapter.tag }}</span>
@@ -55,7 +50,6 @@
         </div>
       </div>
 
-      <!-- Scrolling text column -->
       <div class="empire-text-col">
         <div class="empire-text-content">
           <div class="empire-chapter-label reveal-fade">
@@ -73,24 +67,17 @@
           >
             {{ para }}
           </p>
-
-          <!-- Key points list -->
-          <ul class="empire-points reveal-up" style="transition-delay:0.5s">
-            <li v-for="point in chapter.points" :key="point" class="empire-point">
-              <span class="empire-point-bullet" />
-              <span>{{ point }}</span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
 
-    <!-- Closing statement -->
+    <!-- Citation finale -->
     <div class="empire-closing">
       <div class="gradient-line" />
       <blockquote class="empire-quote reveal-up">
-        "L'empire que tu construis aujourd'hui<br />
-        définit la liberté que tu vivras demain."
+        "Nous ne créons pas seulement des projets.<br />
+        Nous construisons des identités fortes, des visions durables<br />
+        et des leaders capables d'inspirer leur génération."
       </blockquote>
       <div class="gradient-line" />
     </div>
@@ -100,54 +87,36 @@
 <script setup>
 const chapters = [
   {
-    id: 'growth',
-    tag: 'Croissance',
-    title: 'Bâtir des systèmes qui scalent.',
-    image: '/hero.png',
+    id: 'revelation',
+    tag: 'Révélation',
+    title: 'Révéler la lumière qui sommeille.',
+    image: '/protagoniste.jpeg',
     gradient: 'linear-gradient(135deg, #0E3975 0%, #1D74E8 100%)',
     paragraphs: [
-      'L\'entrepreneuriat moderne ne récompense pas l\'effort brut. Il récompense les systèmes.',
-      'Glow Empire condense plus de 7 ans d\'expérience terrain en méthodes éprouvées — des frameworks de croissance que tu peux installer dans ton business, dès cette semaine, sans avoir à tout réinventer.',
-      'Le résultat : plus de revenus, plus de clarté, plus de temps. Et surtout — un business qui ne dépend plus uniquement de toi.',
-    ],
-    points: [
-      'Frameworks d\'acquisition automatisés',
-      'Systèmes de conversion mesurables',
-      'Processus délégables et documentés',
+      'Dans un monde où beaucoup possèdent du talent sans véritable orientation, Glow Empire a choisi de créer un écosystème capable d\'aider une génération entière à croire en sa valeur, développer son influence et marquer son époque.',
+      'Nous croyons que chaque personne possède une lumière unique, capable d\'impacter le monde lorsqu\'elle est bien développée, bien encadrée et bien positionnée. Notre rôle : créer les conditions pour que cette lumière devienne un rayonnement.',
     ],
   },
   {
-    id: 'brand',
-    tag: 'Personal Branding',
-    title: 'Une marque qui te dépasse.',
-    image: '/hero.png',
+    id: 'leadership',
+    tag: 'Leadership',
+    title: 'Propulser les leaders de demain.',
+    image: '/protagoniste.jpeg',
     gradient: 'linear-gradient(135deg, #0052A3 0%, #00A3FF 60%, #7AD3FF 100%)',
     paragraphs: [
-      'Ta marque personnelle est ton actif le plus précieux. Mais sans stratégie, elle reste invisible.',
-      'On construit ensemble une présence magnétique : positionnement clair, contenu impactant, identité reconnaissable. Le but : attirer naturellement les bonnes opportunités, sans avoir à les chasser.',
-      'Une marque bien bâtie travaille pour toi pendant que tu dors. Elle ouvre des portes que ton CV ne pourra jamais ouvrir.',
-    ],
-    points: [
-      'Positionnement et message signature',
-      'Stratégie de contenu différenciée',
-      'Identité visuelle cohérente premium',
+      'Le leadership ne s\'apprend pas dans les manuels. Il se forge dans les décisions difficiles, les prises de parole qui comptent, les moments où la posture fait toute la différence.',
+      'À travers nos programmes et conférences — dont la Conférence des Femmes Leaders du Bénin — Glow Empire crée des espaces où les leaders se révèlent à eux-mêmes et au monde.',
     ],
   },
   {
-    id: 'mindset',
-    tag: 'Mindset',
-    title: 'Reprogrammer le logiciel mental.',
-    image: '/hero.png',
+    id: 'excellence',
+    tag: 'Excellence',
+    title: 'Valoriser chaque trajectoire.',
+    image: '/protagoniste.jpeg',
     gradient: 'linear-gradient(135deg, #001C3D 0%, #0E3975 60%, #1D74E8 100%)',
     paragraphs: [
-      'Les meilleures stratégies échouent face à un mindset bloqué. Les blocages mentaux sont la vraie limite — pas le marché.',
-      'Glow Empire t\'aide à identifier et démanteler les croyances limitantes qui freinent ton ascension. À installer les schémas mentaux des entrepreneurs qui réussissent réellement.',
-      'Ce n\'est pas du développement personnel léger. C\'est de l\'ingénierie mentale appliquée à la performance.',
-    ],
-    points: [
-      'Audit des croyances limitantes',
-      'Routines de haute performance',
-      'Discipline et clarté décisionnelle',
+      'L\'excellence n\'est pas réservée à quelques-uns. Elle est le résultat d\'une méthode, d\'une discipline et d\'un environnement qui exige le meilleur.',
+      'Chez Glow Empire, nous ne publions, ne transmettons et ne construisons que ce qui élève véritablement. Chaque livre, chaque programme, chaque interaction est pensé pour l\'impact réel — pas pour la performance apparente.',
     ],
   },
 ]
@@ -155,15 +124,13 @@ const chapters = [
 
 <style scoped>
 .empire-section {
-  margin-top:-3rem;
+  margin-top: -3rem;
   position: relative;
-  background:
-    linear-gradient(to bottom, #021833 0%, #010B19 8%, #010B19 100%);
-  padding: 5rem 1.5rem 6rem;
+  background: linear-gradient(to bottom, #021833 0%, #010B19 8%, #010B19 100%);
+  padding: 2rem 1.5rem 6rem;
   overflow: hidden;
 }
 
-/* Top accent line */
 .empire-top-line {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -198,13 +165,12 @@ const chapters = [
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
 }
 
-/* Intro */
+/* Intro — espace réduit */
 .empire-intro {
- 
   position: relative;
   z-index: 1;
   max-width: 700px;
-  margin: 6rem auto 4rem;
+  margin: 3rem auto 3rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -214,7 +180,7 @@ const chapters = [
 
 @media (min-width: 1024px) {
   .empire-intro {
-    margin: 8rem auto 6rem;
+    margin: 4rem auto 5rem;
   }
 }
 
@@ -229,7 +195,6 @@ const chapters = [
   color: rgba(122, 211, 255, 0.6);
 }
 .section-label-line {
-  
   display: block;
   width: 24px;
   height: 1px;
@@ -258,7 +223,7 @@ const chapters = [
   font-weight: 300;
 }
 
-/* === CHAPTER LAYOUT === */
+/* Chapitres */
 .empire-chapter {
   position: relative;
   z-index: 1;
@@ -274,19 +239,13 @@ const chapters = [
   .empire-chapter {
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    padding: 8rem 0;
+    padding: 6rem 0;
     align-items: start;
   }
-
-  .empire-chapter.chapter-reverse .empire-visual-col {
-    order: 2;
-  }
-  .empire-chapter.chapter-reverse .empire-text-col {
-    order: 1;
-  }
+  .empire-chapter.chapter-reverse .empire-visual-col { order: 2; }
+  .empire-chapter.chapter-reverse .empire-text-col { order: 1; }
 }
 
-/* Pinned visual */
 .empire-visual-col {
   position: relative;
 }
@@ -313,7 +272,7 @@ const chapters = [
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.55;
+  opacity: 0.45;
   mix-blend-mode: luminosity;
 }
 
@@ -331,16 +290,12 @@ const chapters = [
   border: 1px solid rgba(122, 211, 255, 0.5);
 }
 .empire-visual-corner-tl {
-  top: 1rem;
-  left: 1rem;
-  border-right: none;
-  border-bottom: none;
+  top: 1rem; left: 1rem;
+  border-right: none; border-bottom: none;
 }
 .empire-visual-corner-br {
-  bottom: 1rem;
-  right: 1rem;
-  border-left: none;
-  border-top: none;
+  bottom: 1rem; right: 1rem;
+  border-left: none; border-top: none;
 }
 
 .empire-visual-badge {
@@ -364,7 +319,6 @@ const chapters = [
   letter-spacing: -0.01em;
 }
 
-/* Scrolling text */
 .empire-text-col {
   display: flex;
   flex-direction: column;
@@ -403,33 +357,7 @@ const chapters = [
   font-weight: 300;
 }
 
-.empire-points {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(122, 211, 255, 0.08);
-}
-.empire-point {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 400;
-}
-.empire-point-bullet {
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #7AD3FF;
-  box-shadow: 0 0 8px rgba(122, 211, 255, 0.6);
-}
-
-/* Closing */
+/* Citation finale */
 .empire-closing {
   position: relative;
   z-index: 1;

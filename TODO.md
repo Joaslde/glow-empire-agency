@@ -64,6 +64,17 @@
 
 ---
 
+### Routing + Pages détail + Copywriting (2026-05-29)
+- [x] **Vue Router 4** installé et configuré (`src/router/index.js`) — routes `/`, `/protagoniste`, `/empire`
+- [x] `App.vue` simplifié en `<RouterView />` — `Home.vue` reprend le contenu de l'ancienne App
+- [x] **Page `/protagoniste`** — bio complète de Riquier Soussia (5 blocs de parcours, stats, expertise, citation), header sticky glassmorphism + footer
+- [x] **Page `/empire`** — contenu complet Glow Empire (manifeste, 4 valeurs, 5 offres, public accompagné), header + footer
+- [x] **`PageHeader.vue`** — composant header sticky pour les pages détail (logo, nav, CTA)
+- [x] **`PageFooter.vue`** — footer léger pour les pages détail (brand, nav, réseaux sociaux)
+- [x] **Copywriting ProtagonistSection** mis à jour — vrai texte Riquier Soussia, stats exactes (12k, 3 livres, 10+ ans), bouton "Mon parcours complet" → route `/protagoniste`
+- [x] **Copywriting EmpireSection** mis à jour — vrai contenu Glow Empire (révélation, leadership, excellence), citation finale reformulée
+- [x] **Faux liens nettoyés** dans Footer : liens fictifs remplacés par ancres réelles (`#protagonist`, `#books`, `#testimonials`), routes (`/protagoniste`, `/empire`), email (`contact@glowempire.com`). Icône X/Twitter retirée. CGV/mentions légales fictives retirées.
+
 ### BooksSection — réécriture en deck premium (2026-05-23)
 - [x] Refonte complète : 3 livres (`Prise de parole en public`, `L'entrepreneuriat des femmes`, `Pourquoi un homme ?`) en **deck de cartes empilées**
 - [x] **Drag tactile 1:1** (Pointer Events + capture) — la carte suit le doigt en temps réel, pas de transition tardive

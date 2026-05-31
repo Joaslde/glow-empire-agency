@@ -1,0 +1,718 @@
+<!-- START OF FILE index.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Glow Empire - Révélez l'éclat qui sommeille en vous avec nos trois ouvrages de transformation personnelle."
+    />
+    <title>Glow Empire - Votre Empire Intérieur Commence Ici</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="navbar navbar-expand-lg sticky-top" id="mainHeader">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#hero">
+          <img
+            src="assets/images/logo.jpg"
+            alt="Glow Empire"
+            class="logo-header"
+            width="40"
+            height="40"
+          />
+          <span class="ms-2 fw-bold">Glow Empire</span>
+        </a>
+
+        <nav class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">L'Homme</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#glow-empire">Glow Empire</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#books">Livres</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials">Témoignages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <button
+          class="btn btn-link position-relative ms-auto ms-lg-3"
+          id="cartBtn"
+          aria-label="Ouvrir le panier"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            ></path>
+          </svg>
+          <span
+            class="badge bg-glow position-absolute top-0 start-100 translate-middle"
+            id="cartBadge"
+            >0</span
+          >
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <!-- Vidéo Desktop -->
+      <video autoplay muted loop playsinline class="hero-video video-desktop">
+        <source
+          src="assets/Generated File November 21, 2025 - 1_45PM.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <!-- Vidéo Mobile : CHEMIN MIS A JOUR (Placeholder) -->
+      <video autoplay muted loop playsinline class="hero-video video-mobile">
+        <!-- REMPLACE LE SRC CI-DESSOUS PAR TON CHEMIN SI DIFFÉRENT -->
+        <source
+          src="assets/Generated File November 21, 2025 - 1_44PM.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <img
+          src="assets/images/logo.jpg"
+          alt=""
+          class="hero-logo mb-4"
+          width="80"
+          height="80"
+        />
+        <h1 class="hero-title">Révélez l'éclat qui sommeille en vous.</h1>
+        <p class="hero-subtitle">
+          Trois ouvrages. Une transformation. Votre empire intérieur commence
+          ici.
+        </p>
+        <a href="#books" class="btn btn-glow mt-4">Découvrir les livres</a>
+      </div>
+    </section>
+
+    <!-- ABOUT: RIQUIER SOUSSIA -->
+    <section id="about" class="py-5 section-fade">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <img
+              src="assets/images/riquier-soussia.jpeg"
+              alt="Riquier Soussia"
+              class="img-fluid rounded-3 lazy-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="col-lg-6">
+            <h2 class="display-5 mb-4">L'homme derrière la vision</h2>
+            <p class="lead">
+              Riquier Soussia n'est pas simplement un auteur. C'est un
+              architecte de destins.
+            </p>
+            <p>
+              Entrepreneur accompli, stratège visionnaire et mentor passionné,
+              il a consacré plus d'une décennie à décrypter les mécanismes
+              invisibles qui séparent ceux qui rêvent de ceux qui accomplissent.
+            </p>
+            <p>
+              Aujourd'hui, à travers Glow Empire, il partage sans réserve les
+              principes qui ont transformé sa vie. Sa philosophie tient en une
+              conviction simple :
+              <strong>chaque être humain possède un diamant brut en lui</strong
+              >.
+            </p>
+            <div class="d-flex gap-3 mt-4">
+              <button
+                style="padding: 10px; font-size: 15px"
+                class="btn btn-glow"
+                data-bs-toggle="modal"
+                data-bs-target="#bioModal"
+              >
+                En savoir plus
+              </button>
+              <a
+                href="#contact"
+                style="padding: 10px; font-size: 15px"
+                class="btn btn-outline-glow"
+                >Me contacter</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLOW EMPIRE -->
+    <section
+      id="glow-empire"
+      class="py-5 section-fade"
+      style="background-color: #001f3f; color: white"
+    >
+      <div class="container">
+        <h2 class="display-5 text-center mb-5">
+          Glow Empire — Là où naissent les légendes personnelles
+        </h2>
+
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-6">
+            <p class="lead mb-4">
+              Glow Empire est bien plus qu'une maison d'édition. C'est un
+              écosystème dédié à l'excellence personnelle.
+            </p>
+            <p>
+              Fondée sur la conviction que le savoir transforme et que
+              l'élégance intérieure rayonne vers l'extérieur, notre mission est
+              d'accompagner chaque individu vers la meilleure version de
+              lui-même.
+            </p>
+          </div>
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <img
+              src="assets/images/empire-office.png"
+              alt="Bureaux Glow Empire"
+              class="empire-image"
+            />
+          </div>
+        </div>
+
+        <div class="row g-4 mt-3">
+          <div class="col-md-4">
+            <div class="value-card">
+              <h4 class="mb-3">Excellence sans compromis</h4>
+              <p>Nous ne publions que ce qui élève véritablement.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="value-card">
+              <h4 class="mb-3">Authenticité radicale</h4>
+              <p>Pas de recettes miracles. Des principes éprouvés.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="value-card">
+              <h4 class="mb-3">Élégance en toute chose</h4>
+              <p>La forme honore le fond.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKS CATALOG (TITRES MIS À JOUR) -->
+    <section id="books" class="py-5 section-fade">
+      <div class="container">
+        <h2 class="display-5 text-center mb-5">Nos Trois Ouvrages</h2>
+        <div class="row g-4">
+          <!-- BOOK 1: Prise de parole -->
+          <div class="col-md-6 col-lg-4">
+            <div class="book-card">
+              <div class="book-image">
+                <img
+                  class="book-photo"
+                  src="assets/images/livre0.jpg"
+                  alt="La prise de parole en public"
+                />
+              </div>
+              <h3 class="mt-3">La prise de parole en public</h3>
+              <p class="text-muted">
+                Votre voix est votre arme la plus puissante.
+              </p>
+              <ul class="small text-muted mb-3">
+                <li>Transformez le stress en charisme magnétique.</li>
+                <li>
+                  Les techniques des grands orateurs pour captiver n'importe
+                  quel auditoire.
+                </li>
+              </ul>
+              <div class="book-footer">
+                <span class="price">5000 FCFA</span>
+                <button
+                  class="btn btn-sm btn-glow add-to-cart"
+                  data-book-id="1"
+                  data-book-title="La prise de parole en public"
+                  data-book-price="5000"
+                >
+                  Ajouter au panier
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOOK 2: Leadership des femmes -->
+          <div class="col-md-6 col-lg-4">
+            <div class="book-card">
+              <div class="book-image">
+                <img
+                  class="book-photo"
+                  src="assets/images/livre1.jpg"
+                  alt="Leadership des femmes"
+                />
+              </div>
+              <h3 class="mt-3">Leadership et entrepreneuriat féminin</h3>
+              <p class="text-muted">L'ère des Reines a commencé.</p>
+              <ul class="small text-muted mb-3">
+                <li>
+                  Brisez le plafond de verre sans sacrifier votre authenticité.
+                </li>
+                <li>
+                  Comment allier force, intuition et stratégie pour diriger avec
+                  impact.
+                </li>
+              </ul>
+              <div class="book-footer">
+                <span class="price">6000 FCFA</span>
+                <button
+                  class="btn btn-sm btn-glow add-to-cart"
+                  data-book-id="2"
+                  data-book-title="Leadership des femmes"
+                  data-book-price="6000"
+                >
+                  Ajouter au panier
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOOK 3: Pourquoi un homme -->
+          <div class="col-md-6 col-lg-4">
+            <div class="book-card">
+              <div class="book-image">
+                <img
+                  class="book-photo"
+                  src="assets/images/livre2.jpg"
+                  alt="Pourquoi un homme"
+                />
+              </div>
+              <h3 class="mt-3">Pourquoi un homme</h3>
+              <p class="text-muted">
+                Redéfinir le masculin dans un monde en mutation.
+              </p>
+              <ul class="small text-muted mb-3">
+                <li>
+                  Retrouvez le sens de la responsabilité, du but et de la force
+                  intérieure.
+                </li>
+                <li>
+                  Un guide pour naviguer les relations et l'ambition avec
+                  honneur.
+                </li>
+              </ul>
+              <div class="book-footer">
+                <span class="price">8000 FCFA</span>
+                <button
+                  class="btn btn-sm btn-glow add-to-cart"
+                  data-book-id="3"
+                  data-book-title="Pourquoi un homme"
+                  data-book-price="8000"
+                >
+                  Ajouter au panier
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY THESE BOOKS -->
+    <section
+      id="why-books"
+      class="py-5 section-fade"
+      style="background-color: #f8f9fa"
+    >
+      <div class="container">
+        <h2 class="display-5 text-center mb-3">
+          Ce qui vous attend de l'autre côté
+        </h2>
+        <p class="lead text-center mb-5">
+          Ces ouvrages ne sont pas faits pour être lus. Ils sont faits pour être
+          vécus.
+        </p>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="benefit-item">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                stroke="#4DB8FF"
+                stroke-width="2"
+                class="me-3"
+              >
+                <circle cx="20" cy="20" r="18"></circle>
+                <path d="M14 20l3 3 8-8"></path>
+              </svg>
+              <span
+                >Une clarté mentale qui dissipe le brouillard des
+                hésitations.</span
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="benefit-item">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                stroke="#4DB8FF"
+                stroke-width="2"
+                class="me-3"
+              >
+                <circle cx="20" cy="20" r="18"></circle>
+                <path d="M14 20l3 3 8-8"></path>
+              </svg>
+              <span
+                >La confiance tranquille de celui qui sait exactement où il
+                va.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (AVEC PHOTOS) -->
+    <section id="testimonials" class="py-5 section-fade">
+      <div class="container">
+        <h2 class="display-5 text-center mb-5">Ils ont choisi de briller</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <!-- Placeholder image - Remplace par tes images locales -->
+                <img
+                  src="assets/images/testi1.jpg"
+                  alt="Aminata K."
+                  class="testimonial-img"
+                />
+                <div class="testimonial-info">
+                  <h5>Aminata K.</h5>
+                  <small>Entrepreneure</small>
+                </div>
+              </div>
+              <p class="lead text-muted fs-6">
+                « J'ai lu des dizaines de livres sur le sujet. Celui sur la
+                prise de parole a débloqué quelque chose en moi dès le premier
+                chapitre. »
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <img
+                  src="assets/images/testi2.jpg"
+                  alt="Thomas M."
+                  class="testimonial-img"
+                />
+                <div class="testimonial-info">
+                  <h5>Thomas M.</h5>
+                  <small>Cadre dirigeant</small>
+                </div>
+              </div>
+              <p class="lead text-muted fs-6">
+                « "Pourquoi un homme" n'est pas un livre, c'est un miroir. Un
+                miroir exigeant mais bienveillant. Il m'a montré comment
+                affronter mes peurs avec grâce. »
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <img
+                  src="assets/images/testi3.jpg"
+                  alt="Nadia R."
+                  class="testimonial-img"
+                />
+                <div class="testimonial-info">
+                  <h5>Nadia R.</h5>
+                  <small>Coach certifiée</small>
+                </div>
+              </div>
+              <p class="lead text-muted fs-6">
+                « L'ouvrage sur le leadership féminin est d'une justesse
+                incroyable. Riquier écrit avec intention et précision. Une
+                lecture indispensable. »
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <img
+                  src="assets/images/testi4.jpg"
+                  alt="David L."
+                  class="testimonial-img"
+                />
+                <div class="testimonial-info">
+                  <h5>David L.</h5>
+                  <small>Consultant</small>
+                </div>
+              </div>
+              <p class="lead text-muted fs-6">
+                « C'est devenu ma carte de visite intellectuelle. J'offre ces
+                livres à tous mes collaborateurs. »
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section
+      id="contact"
+      class="py-5 section-fade"
+      style="background-color: #f8f9fa"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="display-5 text-center mb-3">Entrons en contact</h2>
+            <p class="lead text-center mb-5">
+              Une question, une collaboration ?
+            </p>
+            <form
+              id="contactForm"
+              action="assets/php/contact.php"
+              method="POST"
+            >
+              <div class="mb-3">
+                <label for="name" class="form-label">Votre nom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label"
+                  >Votre adresse e-mail</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Votre message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-glow w-100">
+                Envoyer mon message
+              </button>
+            </form>
+            <div
+              id="formConfirmation"
+              style="display: none"
+              class="alert alert-success mt-3"
+            >
+              Merci. Votre message a bien été transmis.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-5" style="background-color: #001f3f; color: white">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Glow Empire</h5>
+            <p>Votre empire vous attend.</p>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Liens utiles</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#contact" class="text-light text-decoration-none"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Nous contacter</h5>
+            <p>
+              <a
+                href="mailto:contact@glowempire.com"
+                class="text-light text-decoration-none"
+                >contact@glowempire.com</a
+              >
+            </p>
+          </div>
+        </div>
+        <hr class="border-secondary" />
+        <p class="text-center text-muted mb-0">
+          © 2025 Glow Empire — Tous droits réservés.
+        </p>
+      </div>
+    </footer>
+
+    <!-- CART MODAL -->
+    <div id="cartPanel" class="cart-panel">
+      <div class="cart-header">
+        <h5>Votre sélection</h5>
+        <button
+          type="button"
+          class="btn-close"
+          id="closeCartPanel"
+          aria-label="Fermer le panier"
+        ></button>
+      </div>
+      <div class="cart-body" id="cartBody">
+        <p class="text-muted">Votre panier est vide.</p>
+      </div>
+      <div class="cart-footer" id="cartFooter" style="display: none">
+        <div class="d-flex justify-content-between mb-3">
+          <span>Total :</span>
+          <span id="cartTotal" class="fw-bold">0 FCFA</span>
+        </div>
+        <button type="button" class="btn btn-glow w-100 mb-2" id="checkoutBtn">
+          Valider mon achat
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary w-100"
+          id="continueShopping"
+        >
+          Continuer mes achats
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL: Bio Riquier -->
+    <div class="modal fade" id="bioModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Biographie</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Riquier SOUSSIA est un leader visionnaire, stratège du
+              développement humain et bâtisseur d’écosystèmes d’impact, reconnu
+              pour son engagement en faveur du leadership, de l’autonomisation
+              des jeunes et de l’élévation du potentiel féminin en Afrique.
+              Juriste en formation, il combine la rigueur du droit à une
+              compréhension fine des dynamiques sociales, entrepreneuriales et
+              humaines. Très tôt, il développe une passion pour l’image, la
+              communication et l’influence positive, ce qui l’amène à évoluer
+              dans les univers du mannequinat, du branding, du marketing
+              stratégique et du développement personnel. Mannequin
+              professionnel, graphiste et stratège marketing, Riquier SOUSSIA se
+              distingue par sa capacité à bâtir des identités fortes, à
+              positionner des marques et à transformer des talents bruts en
+              leaders visibles, crédibles et impactants. Son approche est à la
+              fois esthétique, stratégique et profondément humaine, centrée sur
+              la valeur, la posture et la vision. Coach en prise de parole en
+              public, en mannequinat, en personal branding et en développement
+              personnel, il accompagne depuis plusieurs années des jeunes, des
+              femmes leaders, des entrepreneurs, et des professionnels vers une
+              meilleure confiance en eux, une communication maîtrisée et une
+              image alignée à leur mission de vie. Son style de coaching est
+              reconnu pour sa rigueur, sa bienveillance et sa capacité à
+              provoquer de véritables déclics transformationnels. Fondateur et
+              Président de GLOW EMPIRE, un écosystème dédié à la révélation du
+              potentiel, au leadership conscient et à l’excellence personnelle,
+              Riquier SOUSSIA œuvre activement à la construction d’une
+              génération de leaders responsables, inspirants et stratégiques. À
+              travers cette plateforme, il développe des programmes de
+              formation, des conférences, des coachings et des initiatives à
+              fort impact social. Il est également Président du Comité
+              d’Organisation de la Conférence des Femmes Leaders du Bénin, une
+              initiative majeure visant à renforcer le leadership féminin,
+              l’entrepreneuriat, la confiance en soi et la visibilité des femmes
+              dans les sphères de décision. Cette conférence s’impose
+              progressivement comme un rendez-vous incontournable du leadership
+              féminin en Afrique de l’Ouest. Homme de vision, de discipline et
+              de valeurs, Riquier SOUSSIA incarne une nouvelle génération de
+              leaders africains engagés dans la transformation mentale, sociale
+              et économique du continent. Son combat quotidien est clair :
+              réveiller les leaders, restaurer la dignité intérieure,
+              repositionner les talents et bâtir des destins alignés à leur
+              potentiel. Sa devise : « La grandeur se construit, elle ne
+              s’improvise pas. »
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Mobile Cart Button -->
+    <button
+      id="mobileCartBtn"
+      class="mobile-cart-btn"
+      aria-label="Ouvrir le panier"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path
+          d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+        ></path>
+      </svg>
+      <span class="badge bg-glow" id="mobileCartBadge">0</span>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
