@@ -275,7 +275,7 @@ function navigate(href) {
   background: radial-gradient(
     ellipse at 30% 0%,
     rgba(255, 255, 255, 0.18) 0%,
-    transparent 60%
+    transparent 30%
   );
   pointer-events: none;
 }
