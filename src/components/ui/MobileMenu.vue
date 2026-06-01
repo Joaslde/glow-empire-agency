@@ -125,7 +125,8 @@ function navigate(href) {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  /* Fond de base dense (fallback si backdrop-filter ignoré en prod) */
+  background: rgba(8, 28, 56, 0.72);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -220,7 +221,8 @@ function navigate(href) {
   height: 47px;
   margin: 2.5px;   /* centers the 47px item within the 52px button area */
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  /* Fond de base dense (fallback si backdrop-filter ignoré en prod) */
+  background: rgba(8, 28, 56, 0.72);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -316,7 +318,7 @@ function navigate(href) {
 }
 
 .radial-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(20, 50, 92, 0.78);
   border-color: rgba(122, 211, 255, 0.4);
   color: #7AD3FF;
   box-shadow:
@@ -324,5 +326,19 @@ function navigate(href) {
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     0 10px 28px rgba(0, 0, 0, 0.22),
     0 0 40px rgba(122, 211, 255, 0.18);
+}
+
+/* Quand le flou est réellement supporté ET appliqué, on allège le fond
+   pour retrouver le vrai verre dépoli translucide. Sinon, le fond dense
+   ci-dessus reste (évite la transparence excessive observée en prod). */
+@supports ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+  .mobile-menu-btn,
+  .radial-item {
+    background: rgba(12, 36, 68, 0.42);
+  }
+  .mobile-menu-btn:hover,
+  .radial-item:hover {
+    background: rgba(20, 50, 92, 0.5);
+  }
 }
 </style>
