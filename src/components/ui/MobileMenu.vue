@@ -11,7 +11,7 @@
       :aria-label="item.label"
       @click.prevent="navigate(item.href)"
     >
-      <component :is="item.icon" :size="18" weight="light" class="radial-item-icon" />
+      <component :is="item.icon" :size="16" weight="light" class="radial-item-icon" />
       <span class="radial-item-label">{{ item.label }}</span>
     </a>
 
@@ -62,10 +62,10 @@ const RADIUS = 105
 
 const navItems = [
   { href: '#hero',         angle: -10,   icon: PhHouseSimple, label: 'Accueil' },
-  { href: '#protagonist',  angle: 18,  icon: PhUser,        label: 'Protagoniste' },
+  { href: '#protagonist',  angle: 18,  icon: PhUser,        label: 'L\'homme' },
   { href: '#empire',       angle: 47,  icon: PhBuildings,   label: 'Empire' },
   { href: '#books',        angle: 74,  icon: PhBooks,       label: 'Livres' },
-  { href: '#testimonials', angle: 102,  icon: PhStar,        label: 'Témoignages' },
+  { href: '#testimonials', angle: 102,  icon: PhStar,        label: 'Impact' },
 ]
 
 function getItemStyle(item) {
@@ -216,9 +216,9 @@ function navigate(href) {
   position: absolute;
   top: 0;
   left: 0;
-  width: 44px;
-  height: 44px;
-  margin: 4px;   /* centers the 44px item within the 52px button area */
+  width: 47px;
+  height: 47px;
+  margin: 2.5px;   /* centers the 47px item within the 52px button area */
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px) saturate(180%);
@@ -229,11 +229,13 @@ function navigate(href) {
     inset 0 -1px 0 rgba(255, 255, 255, 0.05),
     0 6px 22px rgba(0, 0, 0, 0.18);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1px;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  overflow: visible;
+  overflow: hidden;
   z-index: 1;
   /* Closed: stacked behind the button, invisible */
   transform: translate(0, 0) scale(0);
@@ -278,25 +280,24 @@ function navigate(href) {
   pointer-events: none;
 }
 
-/* Icon must sit above the sheen pseudo-elements */
+/* Icon must sit above the sheen pseudo-elements — légèrement remontée */
 .radial-item-icon {
   position: relative;
   z-index: 1;
+  margin-top: -1px;
 }
 
-/* Petit label sous chaque icône — décrit la page ciblée */
+/* Petit label à l'intérieur de la boule, sous l'icône */
 .radial-item-label {
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.56rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  position: relative;
+  z-index: 1;
+  font-size: 0.40rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  line-height: 1;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.78);
-  text-shadow: 0 1px 6px rgba(1, 11, 25, 0.9);
+  color: rgba(255, 255, 255, 0.8);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease var(--item-delay, 0s);
