@@ -5,6 +5,8 @@ const routes = [
   { path: '/', component: Home },
   { path: '/protagoniste', component: () => import('@/views/ProtagonistePage.vue') },
   { path: '/empire', component: () => import('@/views/EmpirePage.vue') },
+  { path: '/payment/success', component: () => import('@/views/PaymentSuccess.vue') },
+  { path: '/my-purchases', component: () => import('@/views/MyPurchases.vue') },
 ]
 
 export const router = createRouter({

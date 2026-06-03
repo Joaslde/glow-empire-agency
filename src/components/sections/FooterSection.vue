@@ -166,6 +166,7 @@ const linkCols = [
       { label: 'Prise de parole en public', hash: '#books' },
       { label: 'Leadership féminin', hash: '#books' },
       { label: 'Pourquoi un homme', hash: '#books' },
+      { label: 'Mes achats', route: '/my-purchases' },
     ],
   },
   {

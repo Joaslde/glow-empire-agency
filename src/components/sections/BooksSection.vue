@@ -79,12 +79,12 @@
                 <span class="book-pages">{{ book.pages }} pages</span>
                 <span class="book-year">{{ book.year }}</span>
               </div>
-              <a href="#" class="book-cta glass-cta">
+              <button type="button" class="book-cta glass-cta" @click="openModal(book)">
                 <span>Obtenir le livre</span>
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                   <path d="M2 6.5h9M8 3L11 6.5 8 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -116,39 +116,64 @@
         <path d="M1 5h15M12 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
+
+    <!-- Modal d'achat -->
+    <BookPurchaseModal :book="selectedBook" @close="closeModal" />
   </section>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
+import BookPurchaseModal from '@/components/ui/BookPurchaseModal.vue'
 
 const books = [
   {
+    id: 'prise-de-parole',
     title: 'Prise de parole en public',
     badge: 'Bestseller',
     desc: "Maîtrise l'art de captiver une salle, de convaincre et de laisser une empreinte durable. Le guide pour prendre le contrôle de chaque prise de parole.",
+    longDesc: [
+      "Prendre la parole, c'est exercer un pouvoir. Celui de captiver, de convaincre et de marquer les esprits. Pourtant, pour la plupart des gens, c'est aussi la source d'une peur paralysante.",
+      "Ce livre démonte, étape par étape, les mécanismes d'une prise de parole maîtrisée : la préparation mentale, la structure d'un discours qui retient l'attention, le langage du corps, la gestion du trac et l'art de répondre à n'importe quelle question avec assurance.",
+      "Que tu sois entrepreneur, étudiant, leader ou créateur, tu y trouveras une méthode concrète et immédiatement actionnable pour transformer chaque intervention en un moment d'impact.",
+    ],
     pages: '220',
     year: '2022',
+    price: 5000,
     gradient: 'linear-gradient(135deg, #0E3975 0%, #1D74E8 55%, #7AD3FF 100%)',
     shadow: 'linear-gradient(to bottom, rgba(29, 116, 232, 0.5), transparent)',
     image: '/livre1.jpeg',
   },
   {
+    id: 'entrepreneuriat-femmes',
     title: "L'entrepreneuriat des femmes",
     badge: 'Top 10',
     desc: "Le manuel de l'entrepreneuriat féminin moderne — stratégies, positionnement et mindset pour bâtir un empire à son image.",
+    longDesc: [
+      "L'entrepreneuriat féminin n'est pas une version allégée de l'entrepreneuriat. C'est une force à part entière, avec ses codes, ses défis et ses leviers spécifiques.",
+      "Ce manuel rassemble les stratégies de positionnement, de mindset et de construction d'image qui permettent à une femme de bâtir un projet solide, rentable et aligné avec sa vision — sans se renier.",
+      "De l'idée au lancement, de la confiance en soi à la visibilité, chaque chapitre offre des outils éprouvés pour transformer l'ambition en empire.",
+    ],
     pages: '288',
     year: '2023',
+    price: 6000,
     gradient: 'linear-gradient(135deg, #001C3D 0%, #0E3975 55%, #1D74E8 100%)',
     shadow: 'linear-gradient(to bottom, rgba(14, 57, 117, 0.5), transparent)',
     image: '/livre2.jpg',
   },
   {
+    id: 'pourquoi-un-homme',
     title: 'Pourquoi un homme ?',
     badge: 'Best-seller #1',
     desc: "Le livre qui a tout changé. Une exploration sans filtre des dynamiques relationnelles, du pouvoir et des choix qui définissent une vie.",
+    longDesc: [
+      "Pourquoi un homme ? Une question simple, une réponse qui ne l'est jamais. Ce livre explore sans filtre les dynamiques relationnelles, les rapports de pouvoir et les choix qui façonnent une vie.",
+      "Loin des clichés, il propose une réflexion lucide sur le désir, l'engagement, la valeur et les décisions qui définissent qui nous devenons.",
+      "Un ouvrage qui dérange, éclaire et pousse à se poser les vraies questions — celui dont tout le monde parle.",
+    ],
     pages: '264',
     year: '2024',
+    price: 6000,
     gradient: 'linear-gradient(135deg, #0052A3 0%, #00A3FF 55%, #7AD3FF 100%)',
     shadow: 'linear-gradient(to bottom, rgba(0, 163, 255, 0.4), transparent)',
     image: '/livre3.jpeg',
@@ -158,6 +183,17 @@ const books = [
 const TOTAL = books.length
 const activeIndex = ref(0)
 const deckRef = ref(null)
+
+// === Modal d'achat ===
+const selectedBook = ref(null)
+function openModal(book) {
+  // Évite l'ouverture si un drag vient de se terminer
+  if (Math.abs(dragX.value) > 4) return
+  selectedBook.value = book
+}
+function closeModal() {
+  selectedBook.value = null
+}
 
 // === Drag state ===
 // dragX = current finger displacement in px from start (signed: negative = left)
