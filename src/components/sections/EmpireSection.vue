@@ -14,12 +14,13 @@
         <span>L'empire</span>
       </div>
       <h2 class="empire-title reveal-up" style="transition-delay:0.15s">
-        Un écosystème<br />
-        <span class="empire-title-accent">bâti pour révéler.</span>
+        Une agence.<br />
+        <span class="empire-title-accent">Un écosystème d'impact.</span>
       </h2>
       <p class="empire-subtitle reveal-up" style="transition-delay:0.3s">
-        Glow Empire n'est pas une marque. C'est une infrastructure dédiée à la révélation des potentiels,
-        à la construction de l'image et à l'accompagnement des leaders de demain.
+        Glow Empire est une agence spécialisée en communication, formation, digital, leadership et événementiel.
+        À travers ses départements, elle accompagne entreprises, institutions, entrepreneurs et talents
+        dans le développement de leur image, de leurs compétences et de leur influence.
       </p>
     </div>
 
@@ -71,49 +72,64 @@
       </div>
     </div>
 
-    <!-- Citation finale -->
+    <!-- Citation finale + CTA vers la page Empire -->
     <div class="empire-closing">
       <div class="gradient-line" />
       <blockquote class="empire-quote reveal-up">
         "Nous ne créons pas seulement des projets.<br />
-        Nous construisons des identités fortes, des visions durables<br />
-        et des leaders capables d'inspirer leur génération."
+        Nous bâtissons des identités fortes, des leaders capables<br />
+        d'inspirer leur génération et des marques qui durent."
       </blockquote>
       <div class="gradient-line" />
+
+      <button class="empire-cta glass-cta reveal-up" style="transition-delay:0.15s" @click="goToEmpire">
+        <span>Découvrir l'Empire</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </section>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToEmpire() {
+  router.push('/empire')
+}
+
 const chapters = [
   {
-    id: 'revelation',
-    tag: 'Révélation',
-    title: 'Révéler la lumière qui sommeille.',
+    id: 'communication',
+    tag: 'Communication & Influence',
+    title: 'Donner à votre image la place qu\'elle mérite.',
     image: '/glow-empire1.jpeg',
     paragraphs: [
-      'Dans un monde où beaucoup possèdent du talent sans véritable orientation, Glow Empire a choisi de créer un écosystème capable d\'aider une génération entière à croire en sa valeur, développer son influence et marquer son époque.',
-      'Nous croyons que chaque personne possède une lumière unique, capable d\'impacter le monde lorsqu\'elle est bien développée, bien encadrée et bien positionnée. Notre rôle : créer les conditions pour que cette lumière devienne un rayonnement.',
+      'Communication d\'entreprise, branding, relations publiques, marketing stratégique et influence digitale : Glow Communication construit des identités fortes et des messages qui marquent.',
+      'Nous transformons une présence ordinaire en positionnement clair, crédible et magnétique — celui qui fait qu\'une marque devient une référence dans son secteur.',
     ],
   },
   {
     id: 'leadership',
-    tag: 'Leadership',
-    title: 'Propulser les leaders de demain.',
+    tag: 'Leadership & Formation',
+    title: 'Former et propulser les leaders de demain.',
     image: '/glow-empire2.jpeg',
     paragraphs: [
-      'Le leadership ne s\'apprend pas dans les manuels. Il se forge dans les décisions difficiles, les prises de parole qui comptent, les moments où la posture fait toute la différence.',
-      'À travers nos programmes et conférences — dont la Conférence des Femmes Leaders du Bénin — Glow Empire crée des espaces où les leaders se révèlent à eux-mêmes et au monde.',
+      'À travers GLOW Educ et GLOW Summit, nous accompagnons entrepreneurs, jeunes diplômés et organisations : coaching, leadership, personal branding, masterclass et conférences de networking.',
+      'Des espaces conçus pour révéler les talents, développer le business et créer les connexions qui font grandir — dont la Conférence des Femmes Leaders du Bénin.',
     ],
   },
   {
-    id: 'excellence',
-    tag: 'Excellence',
-    title: 'Valoriser chaque trajectoire.',
+    id: 'evenementiel',
+    tag: 'Événementiel & Excellence',
+    title: 'Une exécution à la hauteur de l\'ambition.',
     image: '/glow-empire3.jpeg',
     paragraphs: [
-      'L\'excellence n\'est pas réservée à quelques-uns. Elle est le résultat d\'une méthode, d\'une discipline et d\'un environnement qui exige le meilleur.',
-      'Chez Glow Empire, nous ne publions, ne transmettons et ne construisons que ce qui élève véritablement. Chaque livre, chaque programme, chaque interaction est pensé pour l\'impact réel — pas pour la performance apparente.',
+      'Avec GLOW Aura, l\'événementiel haut de gamme prend forme : hôtessariat, accueil VIP, accompagnement protocolaire, animation commerciale, modèles et représentation de marques.',
+      'Chaque détail est pensé pour l\'impact réel. Glow Empire ne livre que ce qui élève véritablement une marque, un événement, une vision.',
     ],
   },
 ]
@@ -388,5 +404,25 @@ const chapters = [
   text-align: center;
   font-style: italic;
   letter-spacing: 0.01em;
+}
+
+.empire-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+  padding: 0.95rem 1.9rem;
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+}
+.empire-cta svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.empire-cta:hover svg {
+  transform: translateX(3px);
 }
 </style>

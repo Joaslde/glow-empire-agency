@@ -76,7 +76,14 @@
             <li v-for="link in col.links" :key="link.label">
               <RouterLink v-if="link.route" :to="link.route" class="footer-link">{{ link.label }}</RouterLink>
               <a v-else-if="link.hash" href="#" class="footer-link" @click.prevent="scrollTo(link.hash)">{{ link.label }}</a>
-              <a v-else :href="link.href" class="footer-link">{{ link.label }}</a>
+              <span v-else-if="!link.href" class="footer-link footer-link-static">{{ link.label }}</span>
+              <a
+                v-else
+                :href="link.href"
+                class="footer-link"
+                :target="link.external ? '_blank' : undefined"
+                :rel="link.external ? 'noopener' : undefined"
+              >{{ link.label }}</a>
             </li>
           </ul>
         </div>
@@ -90,7 +97,7 @@
             © {{ currentYear }} Glow Empire. Tous droits réservés.
           </span>
           <div class="footer-bottom-links">
-            <a href="mailto:contact@glowempire.com" class="footer-bottom-link">contact@glowempire.com</a>
+            <a href="mailto:contact@glow-empire-agency.com" class="footer-bottom-link">contact@glow-empire-agency.com</a>
           </div>
         </div>
       </div>
@@ -164,7 +171,10 @@ const linkCols = [
   {
     title: 'Contact',
     links: [
-      { label: 'contact@glowempire.com', href: 'mailto:contact@glowempire.com' },
+      { label: 'contact@glow-empire-agency.com', href: 'mailto:contact@glow-empire-agency.com' },
+      { label: '+229 01 98 52 38 79', href: 'tel:+2290198523879' },
+      { label: 'Devis sur WhatsApp', href: 'https://wa.me/2290198523879', external: true },
+      { label: 'Zopha', href: null },
     ],
   },
 ]
@@ -390,6 +400,9 @@ const linkCols = [
 }
 .footer-link:hover {
   color: rgba(255, 255, 255, 0.85);
+}
+.footer-link-static {
+  cursor: default;
 }
 
 /* Bottom bar */

@@ -19,12 +19,11 @@
           </div>
           <h1 class="epage-hero-title">
             Glow Empire —<br />
-            <span class="epage-hero-accent">L'agence qui révèle, propulse et valorise.</span>
+            <span class="epage-hero-accent">L'agence qui forme, connecte et valorise.</span>
           </h1>
           <p class="epage-hero-sub">
-            Née d'un profond désir d'impact et de transformation,
-            Glow Empire est une agence dédiée à la révélation des potentiels,
-            à la construction de l'image et à l'accompagnement des leaders de demain.
+            Une agence spécialisée en communication, formation, digital, leadership et événementiel.
+            Un écosystème de croissance, d'innovation et d'excellence au service de l'impact.
           </p>
         </div>
       </section>
@@ -36,55 +35,52 @@
           <!-- Manifeste : texte + image -->
           <div class="epage-block">
             <div class="epage-block-text">
-              <h2 class="epage-section-title">Une vision. Un écosystème.</h2>
+              <h2 class="epage-section-title">Une mission claire. Un impact durable.</h2>
               <p class="epage-para">
-                Dans un monde où beaucoup possèdent du talent sans véritable orientation,
-                Glow Empire a choisi de créer un <strong>écosystème capable d'aider une génération entière</strong>
-                à croire en sa valeur, développer son influence et marquer son époque.
+                À travers ses différents départements, Glow Empire accompagne
+                <strong>les entreprises, les institutions, les entrepreneurs et les talents</strong>
+                dans le développement de leur image, de leurs compétences et de leur influence.
               </p>
               <p class="epage-para">
-                Nous croyons que chaque personne possède une lumière unique,
-                capable d'impacter le monde lorsqu'elle est <strong>bien développée, bien encadrée et bien positionnée</strong>.
-                Notre rôle est de créer les conditions pour que cette lumière devienne un rayonnement.
+                Notre mission : <strong>former, connecter, valoriser et accompagner</strong>
+                les leaders d'aujourd'hui et de demain, en leur offrant des solutions innovantes
+                et adaptées à leurs besoins.
+              </p>
+              <p class="epage-para">
+                Glow Empire, c'est un écosystème de croissance, d'innovation et d'excellence
+                au service de l'impact.
               </p>
             </div>
             <div class="epage-block-img-wrap">
-              <img src="/glow-empire1.jpeg" alt="Glow Empire — vision" class="epage-block-img" loading="lazy" />
+              <img src="/glow-empire1.jpeg" alt="Glow Empire — agence" class="epage-block-img" loading="lazy" />
               <div class="epage-block-img-overlay" />
             </div>
           </div>
 
-          <!-- Valeurs : liste seule (pas d'image, évite l'adjacence) -->
-          <div class="epage-valeurs-block">
-            <h2 class="epage-section-title">Nos piliers fondamentaux</h2>
-            <div class="epage-valeurs-grid">
-              <div v-for="v in valeurs" :key="v.titre" class="epage-valeur">
-                <div class="epage-valeur-header">
-                  <span class="epage-valeur-num">{{ v.num }}</span>
-                  <h4 class="epage-valeur-titre">{{ v.titre }}</h4>
-                </div>
-                <p class="epage-valeur-desc">{{ v.desc }}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Ce que nous construisons : pleine largeur puis liste -->
-          <div class="epage-offres">
-            <div class="epage-offres-header">
-              <h2 class="epage-section-title">Ce que nous construisons</h2>
+          <!-- Départements -->
+          <div class="epage-depts-block">
+            <div class="epage-depts-head">
+              <h2 class="epage-section-title">Nos départements</h2>
               <p class="epage-para epage-para-max">
-                Glow Empire n'est pas seulement une maison d'édition ou un cabinet de coaching.
-                C'est une infrastructure complète au service de l'excellence humaine.
+                Cinq pôles d'expertise complémentaires, réunis sous une même exigence d'excellence.
               </p>
             </div>
-
-            <div class="epage-offres-grid">
-              <div v-for="offre in offres" :key="offre.titre" class="epage-offre-item">
-                <div class="epage-offre-dot" />
-                <div>
-                  <h4 class="epage-offre-titre">{{ offre.titre }}</h4>
-                  <p class="epage-offre-desc">{{ offre.desc }}</p>
+            <div class="epage-depts-grid">
+              <div
+                v-for="d in departements"
+                :key="d.nom"
+                class="epage-dept"
+                :class="{ 'epage-dept-feature': d.feature }"
+              >
+                <div class="epage-dept-top">
+                  <span class="epage-dept-emoji">{{ d.emoji }}</span>
+                  <span v-if="d.feature" class="epage-dept-badge">Phare</span>
                 </div>
+                <h4 class="epage-dept-nom">{{ d.nom }}</h4>
+                <p class="epage-dept-tagline">{{ d.tagline }}</p>
+                <ul class="epage-dept-list">
+                  <li v-for="s in d.services" :key="s">{{ s }}</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -120,22 +116,65 @@
             </div>
           </div>
 
-          <!-- Citation finale -->
+          <!-- Citation -->
           <div class="epage-quote-wrap">
             <div class="epage-quote-line" />
             <blockquote class="epage-quote">
-              "Chez Glow Empire, nous ne créons pas seulement des projets.<br />
-              Nous construisons des identités fortes, des visions durables<br />
-              et des leaders capables d'inspirer leur génération."
+              "Nous ne créons pas seulement des projets.<br />
+              Nous bâtissons des identités fortes, des leaders capables<br />
+              d'inspirer leur génération et des marques qui durent."
             </blockquote>
             <div class="epage-quote-line" />
           </div>
 
-          <!-- CTA -->
-          <div class="epage-cta-wrap">
-            <RouterLink to="/#books" class="glass-cta epage-cta" @click="scrollToBooks">
-              <span>Découvrir les livres</span>
+          <!-- Bloc contact / devis -->
+          <div class="epage-contact">
+            <div class="epage-contact-head">
+              <div class="section-label">
+                <span class="section-label-line" />
+                <span>Travaillons ensemble</span>
+              </div>
+              <h2 class="epage-section-title">Un projet ? Parlons-en.</h2>
+              <p class="epage-para epage-para-max">
+                Demandez votre devis ou contactez-nous directement.
+                Notre équipe revient vers vous rapidement pour construire la solution adaptée à votre besoin.
+              </p>
+            </div>
+
+            <a :href="whatsappLink" target="_blank" rel="noopener" class="glass-cta epage-contact-cta">
+              <span>Demander un devis sur WhatsApp</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <div class="epage-contact-grid">
+              <a :href="`tel:${phoneRaw}`" class="epage-contact-item">
+                <span class="epage-contact-label">Téléphone & WhatsApp</span>
+                <span class="epage-contact-value">{{ phoneDisplay }}</span>
+              </a>
+              <a :href="`mailto:${email}`" class="epage-contact-item">
+                <span class="epage-contact-label">Email</span>
+                <span class="epage-contact-value">{{ email }}</span>
+              </a>
+              <div class="epage-contact-item">
+                <span class="epage-contact-label">Adresse</span>
+                <span class="epage-contact-value">Zopha</span>
+              </div>
+              <div class="epage-contact-item">
+                <span class="epage-contact-label">Réseaux</span>
+                <span class="epage-contact-socials">
+                  <a v-for="s in socials" :key="s.label" :href="s.href" target="_blank" rel="noopener" class="epage-contact-social">{{ s.label }}</a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Liens secondaires -->
+          <div class="epage-cta-wrap">
+            <RouterLink to="/#books" class="epage-link-secondary" @click="scrollToBooks">
+              Découvrir les livres
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                 <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </RouterLink>
@@ -189,49 +228,75 @@ function scrollToBooks() {
   })
 }
 
-const valeurs = [
-  {
-    num: '01',
-    titre: 'Excellence sans compromis',
-    desc: 'Nous ne publions, ne transmettons et ne construisons que ce qui élève véritablement.',
-  },
-  {
-    num: '02',
-    titre: 'Authenticité radicale',
-    desc: 'Pas de recettes miracles. Des principes éprouvés, des méthodes testées sur le terrain.',
-  },
-  {
-    num: '03',
-    titre: 'Élégance en toute chose',
-    desc: 'La forme honore le fond. L\'excellence se reconnaît dans les détails.',
-  },
-  {
-    num: '04',
-    titre: 'Impact social ancré',
-    desc: 'Chaque personne révélée devient un catalyseur pour sa communauté et sa génération.',
-  },
+// Coordonnées
+const phoneRaw = '+2290198523879'
+const phoneDisplay = '+229 01 98 52 38 79'
+const email = 'contact@glow-empire-agency.com'
+const whatsappLink = 'https://wa.me/2290198523879?text=' +
+  encodeURIComponent('Bonjour Glow Empire, je souhaite demander un devis.')
+
+const socials = [
+  { label: 'Facebook', href: 'https://facebook.com' },
+  { label: 'Instagram', href: 'https://instagram.com' },
+  { label: 'TikTok', href: 'https://tiktok.com' },
 ]
 
-const offres = [
+const departements = [
   {
-    titre: 'Publications et livres de transformation',
-    desc: 'Des ouvrages pensés pour être vécus, structurés pour provoquer des déclics réels et durables.',
+    emoji: '📣',
+    nom: 'GLOW Communication & Influence',
+    tagline: 'Communication, branding et influence digitale.',
+    feature: true,
+    services: [
+      'Communication d\'entreprise, commerciale, événementielle et marketing stratégique',
+      'Relations publiques, branding et storytelling',
+      'Gestion de l\'image et influence digitale',
+    ],
   },
   {
-    titre: 'Coaching et accompagnement individuel',
-    desc: 'Un suivi de haute précision pour les entrepreneurs, professionnels et leaders qui veulent accélérer leur trajectoire.',
+    emoji: '👗',
+    nom: 'GLOW Aura',
+    tagline: 'Hôtessariat & événementiel haut de gamme.',
+    feature: true,
+    services: [
+      'Agence d\'hôtessariat et services événementiels haut de gamme',
+      'Accueil VIP et accompagnement protocolaire',
+      'Animation commerciale',
+      'Modèles, shooting photo, défilés et représentation de marques',
+    ],
   },
   {
-    titre: 'Formations et programmes collectifs',
-    desc: 'Des formats intensifs conçus pour transformer des groupes en communautés de leaders.',
+    emoji: '🚀',
+    nom: 'GLOW Summit',
+    tagline: 'Leadership, business et networking.',
+    feature: true,
+    services: [
+      'Conférences, masterclass et événements de networking',
+      'Développement du leadership, du business et de l\'innovation',
+      'Plateforme de visibilité pour talents, entreprises et partenaires',
+    ],
   },
   {
-    titre: 'Conférences et événements à impact',
-    desc: 'Des espaces de rencontre, d\'inspiration et de passage à l\'action — dont la Conférence des Femmes Leaders du Bénin.',
+    emoji: '🧠',
+    nom: 'GLOW Educ',
+    tagline: 'Coaching, leadership & personal branding.',
+    feature: true,
+    services: [
+      'Programmes de formation pour entrepreneurs, jeunes diplômés, entreprises et ONG',
+      'Coaching, leadership et développement personnel',
+      'Personal branding et préparation des leaders de demain',
+    ],
   },
   {
-    titre: 'Stratégie de personal branding',
-    desc: 'Construire une identité forte, un positionnement clair et une présence digitale magnétique.',
+    emoji: '🎓',
+    nom: 'GLOW Academy & Digital Hub',
+    tagline: 'Formation digitale & solutions tech.',
+    feature: false,
+    services: [
+      'Formation et transfert de compétences (digital, design, marketing, technologie)',
+      'Création de contenu : vidéos, podcasts, community management',
+      'Développement web, applications mobiles et stratégies digitales',
+    ],
   },
 ]
 
@@ -417,90 +482,106 @@ const publics = [
   background: linear-gradient(to bottom, transparent 65%, rgba(1,11,25,0.4) 100%);
 }
 
-/* Valeurs (liste seule) */
-.epage-valeurs-block {
+/* Départements */
+.epage-depts-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.epage-depts-head {
   display: flex;
   flex-direction: column;
 }
-.epage-valeurs-grid {
+.epage-depts-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.75rem 3rem;
+  gap: 1.25rem;
 }
 @media (min-width: 700px) {
-  .epage-valeurs-grid { grid-template-columns: repeat(2, 1fr); }
+  .epage-depts-grid { grid-template-columns: repeat(2, 1fr); }
 }
-.epage-valeur {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.epage-valeur-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-.epage-valeur-num {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: rgba(122,211,255,0.4);
-}
-.epage-valeur-titre {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fff;
-}
-.epage-valeur-desc {
-  font-size: 0.88rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.45);
-  font-weight: 300;
+@media (min-width: 1024px) {
+  .epage-depts-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Offres -->  */
-.epage-offres {
+.epage-dept {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 0.85rem;
+  padding: 1.75rem 1.6rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(122, 211, 255, 0.1);
+  background: rgba(2, 24, 51, 0.3);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
 }
-.epage-offres-header {
+.epage-dept:hover {
+  border-color: rgba(122, 211, 255, 0.25);
+  background: rgba(2, 24, 51, 0.5);
+  transform: translateY(-3px);
+}
+.epage-dept-feature {
+  border-color: rgba(122, 211, 255, 0.22);
+  background: linear-gradient(160deg, rgba(13, 57, 117, 0.35) 0%, rgba(2, 24, 51, 0.4) 100%);
+}
+
+.epage-dept-top {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-.epage-offres-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+.epage-dept-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
 }
-@media (min-width: 640px) {
-  .epage-offres-grid { grid-template-columns: repeat(2, 1fr); }
+.epage-dept-badge {
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7AD3FF;
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+  border: 1px solid rgba(122, 211, 255, 0.3);
+  background: rgba(122, 211, 255, 0.06);
 }
-.epage-offre-item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-.epage-offre-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #7AD3FF;
-  box-shadow: 0 0 8px rgba(122,211,255,0.55);
-  flex-shrink: 0;
-  margin-top: 0.35rem;
-}
-.epage-offre-titre {
-  font-size: 0.97rem;
+.epage-dept-nom {
+  font-size: 1.05rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
-.epage-offre-desc {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.45);
+.epage-dept-tagline {
+  font-size: 0.82rem;
+  color: rgba(122, 211, 255, 0.7);
+  font-weight: 400;
+  margin-top: -0.35rem;
+}
+.epage-dept-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+.epage-dept-list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 300;
+}
+.epage-dept-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(122, 211, 255, 0.55);
 }
 
 /* Bloc feature (image + texte empilés, responsive) */
@@ -620,6 +701,100 @@ const publics = [
   line-height: 1.6;
   letter-spacing: 0.01em;
   max-width: 680px;
+}
+
+/* Bloc contact / devis */
+.epage-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.75rem 1.75rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(122, 211, 255, 0.14);
+  background:
+    radial-gradient(ellipse 80% 100% at 50% 0%, rgba(13, 57, 117, 0.3) 0%, transparent 70%),
+    rgba(2, 24, 51, 0.4);
+}
+@media (min-width: 768px) {
+  .epage-contact {
+    padding: 3.5rem 3rem;
+  }
+}
+.epage-contact-head {
+  display: flex;
+  flex-direction: column;
+}
+.epage-contact-head .epage-section-title {
+  margin-top: 1rem;
+}
+.epage-contact-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.9rem;
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+}
+.epage-contact-cta svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.epage-contact-cta:hover svg {
+  transform: translateX(3px);
+}
+.epage-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(122, 211, 255, 0.1);
+}
+@media (min-width: 560px) {
+  .epage-contact-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .epage-contact-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.epage-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+.epage-contact-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(122, 211, 255, 0.55);
+}
+.epage-contact-value {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  transition: color 0.25s ease;
+}
+a.epage-contact-item:hover .epage-contact-value {
+  color: #7AD3FF;
+}
+.epage-contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.epage-contact-social {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.epage-contact-social:hover {
+  color: #7AD3FF;
 }
 
 /* CTA -->  */
