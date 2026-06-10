@@ -146,14 +146,16 @@ async function sendCode() {
 async function verifyCode() {
   loading.value = true
   setMessage('')
+  const token = code.value.replace(/\D/g, '') // ne garder que les chiffres
   const { error } = await supabase.auth.verifyOtp({
     email: email.value.trim(),
-    token: code.value.trim(),
+    token,
     type: 'email',
   })
   loading.value = false
   if (error) {
-    setMessage('Code invalide ou expiré.', true)
+    setMessage('Code invalide ou expiré. Utilise le dernier code reçu (le plus récent).', true)
+    code.value = '' // vide le champ pour éviter de renvoyer le même mauvais code
     return
   }
   step.value = 'list'

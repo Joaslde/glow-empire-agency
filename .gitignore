@@ -17,6 +17,9 @@ dist-ssr
 .env.*
 !.env.example
 
+# Config MCP (contient un token d'accès)
+.mcp.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -35,3 +38,4 @@ supabase/functions/download-ebook/index.ts
 supabase/functions/kkiapay-webhook/index.ts
 supabase/migrations/0001_init.sql
 .claude/scheduled_tasks.lock
+supabase/.temp/linked-project.json
