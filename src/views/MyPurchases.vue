@@ -10,13 +10,13 @@
           <span>Mes ebooks</span>
         </div>
 
-        <!-- Étape 1 : email -->
-        <template v-if="step === 'email'">
+        <template v-if="!sent">
           <h1 class="mp-title">Retrouver mes ebooks</h1>
           <p class="mp-text">
-            Entre l'email utilisé lors de ton achat. Nous t'enverrons un code de connexion.
+            Entre l'email utilisé lors de ton achat. Nous t'enverrons un email
+            contenant le lien de téléchargement de chacun de tes ebooks.
           </p>
-          <form class="mp-form" @submit.prevent="sendCode">
+          <form class="mp-form" @submit.prevent="resend">
             <input
               v-model="email"
               type="email"
@@ -27,64 +27,27 @@
               required
             />
             <button type="submit" class="mp-btn glass-cta" :disabled="loading">
-              <span v-if="!loading">Recevoir mon code</span>
+              <span v-if="!loading">Recevoir mes ebooks par email</span>
               <span v-else>Envoi…</span>
             </button>
           </form>
         </template>
 
-        <!-- Étape 2 : code OTP -->
-        <template v-else-if="step === 'code'">
-          <h1 class="mp-title">Entre ton code</h1>
-          <p class="mp-text">
-            Un code à 6 chiffres a été envoyé à <strong>{{ email }}</strong>.
-          </p>
-          <form class="mp-form" @submit.prevent="verifyCode">
-            <input
-              v-model="code"
-              type="text"
-              inputmode="numeric"
-              maxlength="6"
-              placeholder="••••••"
-              class="mp-input mp-input-code"
-              required
-            />
-            <button type="submit" class="mp-btn glass-cta" :disabled="loading">
-              <span v-if="!loading">Se connecter</span>
-              <span v-else>Vérification…</span>
-            </button>
-          </form>
-          <button class="mp-link" @click="step = 'email'">Changer d'email</button>
-        </template>
-
-        <!-- Étape 3 : liste -->
         <template v-else>
-          <h1 class="mp-title">Mes ebooks</h1>
-          <p v-if="purchases.length === 0 && !loading" class="mp-text">
-            Aucun achat trouvé pour cet email.
+          <div class="mp-check">
+            <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
+              <path d="M8 17.5l6 6L26 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h1 class="mp-title">C'est envoyé !</h1>
+          <p class="mp-text">
+            Si des achats sont rattachés à <strong>{{ email }}</strong>, tu viens de recevoir
+            un email avec tes liens de téléchargement. Pense à vérifier tes spams.
           </p>
-          <ul v-else class="mp-list">
-            <li v-for="p in purchases" :key="p.book_id" class="mp-item">
-              <div class="mp-item-info">
-                <span class="mp-item-title">{{ p.title }}</span>
-                <span class="mp-item-date">Acheté le {{ formatDate(p.created_at) }}</span>
-              </div>
-              <button
-                class="mp-dl"
-                :disabled="dlId === p.book_id"
-                @click="downloadBook(p.book_id)"
-              >
-                <span v-if="dlId !== p.book_id">Télécharger</span>
-                <span v-else>…</span>
-              </button>
-            </li>
-          </ul>
-          <button class="mp-link" @click="signOut">Se déconnecter</button>
+          <button class="mp-link" @click="sent = false">Utiliser un autre email</button>
         </template>
 
-        <p v-if="message" class="mp-message" :class="{ 'mp-message-error': isError }">
-          {{ message }}
-        </p>
+        <p v-if="message" class="mp-message mp-message-error">{{ message }}</p>
       </div>
     </main>
 
@@ -102,132 +65,35 @@ import FooterSection from '@/components/sections/FooterSection.vue'
 
 const lenis = useLenis()
 
-const step = ref('email') // email | code | list
 const email = ref(localStorage.getItem('customer_email') || '')
-const code = ref('')
 const loading = ref(false)
+const sent = ref(false)
 const message = ref('')
-const isError = ref(false)
-const purchases = ref([])
-const dlId = ref('')
 
-function setMessage(msg, error = false) {
-  message.value = msg
-  isError.value = error
-}
-
-function formatDate(iso) {
-  try {
-    return new Date(iso).toLocaleDateString('fr-FR', {
-      day: '2-digit', month: 'long', year: 'numeric',
-    })
-  } catch (_) {
-    return ''
-  }
-}
-
-async function sendCode() {
+async function resend() {
   loading.value = true
-  setMessage('')
+  message.value = ''
   const cleanEmail = email.value.trim()
-  const { error } = await supabase.auth.signInWithOtp({
-    email: cleanEmail,
-    options: { shouldCreateUser: true },
-  })
-  loading.value = false
-  if (error) {
-    setMessage("Impossible d'envoyer le code. Réessaie dans un instant.", true)
-    return
-  }
-  localStorage.setItem('customer_email', cleanEmail)
-  step.value = 'code'
-}
-
-async function verifyCode() {
-  loading.value = true
-  setMessage('')
-  const token = code.value.replace(/\D/g, '') // ne garder que les chiffres
-  const { error } = await supabase.auth.verifyOtp({
-    email: email.value.trim(),
-    token,
-    type: 'email',
-  })
-  loading.value = false
-  if (error) {
-    setMessage('Code invalide ou expiré. Utilise le dernier code reçu (le plus récent).', true)
-    code.value = '' // vide le champ pour éviter de renvoyer le même mauvais code
-    return
-  }
-  step.value = 'list'
-  loadPurchases()
-}
-
-async function loadPurchases() {
-  loading.value = true
-  setMessage('')
-  const { data, error } = await supabase
-    .from('purchases')
-    .select('book_id, created_at, books(title)')
-    .order('created_at', { ascending: false })
-  loading.value = false
-  if (error) {
-    setMessage('Erreur de chargement de tes achats.', true)
-    return
-  }
-  // Dédoublonne par book_id et aplatit le titre
-  const seen = new Set()
-  purchases.value = (data || [])
-    .filter((p) => {
-      if (seen.has(p.book_id)) return false
-      seen.add(p.book_id)
-      return true
-    })
-    .map((p) => ({
-      book_id: p.book_id,
-      created_at: p.created_at,
-      title: p.books?.title || p.book_id,
-    }))
-}
-
-async function downloadBook(bookId) {
-  if (dlId.value) return
-  dlId.value = bookId
-  setMessage('')
   try {
-    const { data, error } = await supabase.functions.invoke('download-ebook', {
-      body: { bookId },
+    const { error } = await supabase.functions.invoke('resend-purchases', {
+      body: { email: cleanEmail },
     })
-    if (error || !data?.signedUrl) {
-      setMessage('Téléchargement indisponible. Réessaie.', true)
+    if (error) {
+      message.value = "Une erreur est survenue. Réessaie dans un instant."
       return
     }
-    const a = document.createElement('a')
-    a.href = data.signedUrl
-    a.rel = 'noopener'
-    document.body.appendChild(a)
-    a.click()
-    a.remove()
+    localStorage.setItem('customer_email', cleanEmail)
+    sent.value = true
+  } catch (_) {
+    message.value = "Une erreur est survenue. Réessaie dans un instant."
   } finally {
-    dlId.value = ''
+    loading.value = false
   }
 }
 
-async function signOut() {
-  await supabase.auth.signOut()
-  purchases.value = []
-  code.value = ''
-  step.value = 'email'
-}
-
-onMounted(async () => {
+onMounted(() => {
   lenis.init()
   window.scrollTo(0, 0)
-  // Session déjà active ? (magic link / retour) → afficher directement la liste
-  const { data } = await supabase.auth.getSession()
-  if (data?.session) {
-    step.value = 'list'
-    loadPurchases()
-  }
 })
 onUnmounted(() => {
   lenis.destroy()
@@ -315,12 +181,6 @@ onUnmounted(() => {
   border-color: rgba(122, 211, 255, 0.5);
   background: rgba(255, 255, 255, 0.09);
 }
-.mp-input-code {
-  text-align: center;
-  letter-spacing: 0.5em;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
 
 .mp-btn {
   display: inline-flex;
@@ -336,49 +196,17 @@ onUnmounted(() => {
 }
 .mp-btn:disabled { opacity: 0.6; cursor: default; }
 
-.mp-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin: 0.5rem 0 0;
-  padding: 0;
-}
-.mp-item {
+.mp-check {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.1rem;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(122, 211, 255, 0.12);
-  background: rgba(2, 24, 51, 0.4);
+  justify-content: center;
+  color: #7AD3FF;
+  background: rgba(122, 211, 255, 0.1);
+  border: 1px solid rgba(122, 211, 255, 0.35);
 }
-.mp-item-info { display: flex; flex-direction: column; gap: 0.2rem; }
-.mp-item-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-}
-.mp-item-date {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.35);
-  font-weight: 300;
-}
-.mp-dl {
-  flex-shrink: 0;
-  padding: 0.55rem 1.1rem;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #010B19;
-  background: #7AD3FF;
-  border: none;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-.mp-dl:hover { background: #a3e1ff; }
-.mp-dl:disabled { opacity: 0.6; cursor: default; }
 
 .mp-link {
   align-self: flex-start;
@@ -395,7 +223,6 @@ onUnmounted(() => {
 
 .mp-message {
   font-size: 0.82rem;
-  color: rgba(122, 211, 255, 0.7);
 }
 .mp-message-error { color: rgba(255, 130, 130, 0.9); }
 </style>
