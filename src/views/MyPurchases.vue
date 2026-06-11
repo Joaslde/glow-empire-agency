@@ -42,8 +42,13 @@
           <h1 class="mp-title">C'est envoyé !</h1>
           <p class="mp-text">
             Si des achats sont rattachés à <strong>{{ email }}</strong>, tu viens de recevoir
-            un email avec tes liens de téléchargement. Pense à vérifier tes spams.
+            un email avec tes liens de téléchargement.
           </p>
+          <div class="mp-spam">
+            📬 <strong>Pense à vérifier tes spams / courriers indésirables.</strong>
+            L'email peut parfois s'y trouver. Ajoute
+            <strong>contact@glow-empire-agency.com</strong> à tes contacts pour ne plus le manquer.
+          </div>
           <button class="mp-link" @click="sent = false">Utiliser un autre email</button>
         </template>
 
@@ -220,6 +225,18 @@ onUnmounted(() => {
   transition: color 0.25s ease;
 }
 .mp-link:hover { color: #7AD3FF; }
+
+.mp-spam {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(122, 211, 255, 0.25);
+  background: rgba(122, 211, 255, 0.07);
+}
+.mp-spam strong { color: #7AD3FF; font-weight: 600; }
 
 .mp-message {
   font-size: 0.82rem;

@@ -25,7 +25,8 @@
           <h1 class="ps-title">Paiement confirmé</h1>
           <p class="ps-text">
             Merci pour ton achat<span v-if="book"> de « {{ book.title }} »</span>.
-            Ton ebook est prêt à être téléchargé.
+            Ton ebook est prêt à être téléchargé. Un email avec ton lien de
+            téléchargement t'a aussi été envoyé — <strong>pense à vérifier tes spams</strong>.
           </p>
           <button class="ps-btn glass-cta" :disabled="downloading" @click="download">
             <span v-if="!downloading">Télécharger maintenant</span>
@@ -220,6 +221,7 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 300;
 }
+.ps-text strong { color: #7AD3FF; font-weight: 600; }
 
 .ps-check {
   width: 72px;
