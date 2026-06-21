@@ -102,6 +102,12 @@
                 qui vise à renforcer l'entrepreneuriat, la confiance en soi et la visibilité
                 des femmes dans les sphères de décision.
               </p>
+              <RouterLink to="/conference-femmes-leaders" class="epage-feature-cta">
+                Voir le rapport complet
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </RouterLink>
             </div>
           </div>
 
@@ -643,6 +649,25 @@ const publics = [
   line-height: 1.8;
   color: rgba(255,255,255,0.55);
   font-weight: 300;
+}
+.epage-feature-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #7AD3FF;
+  text-decoration: none;
+  transition: gap 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.epage-feature-cta svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.epage-feature-cta:hover svg {
+  transform: translateX(3px);
 }
 @media (min-width: 768px) {
   .epage-feature-caption {
