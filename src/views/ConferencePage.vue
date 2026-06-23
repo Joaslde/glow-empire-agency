@@ -320,7 +320,7 @@ const impacts = [
 
 const personnalites = [
   { role: 'Marraine de l\'événement', nom: 'AHO Claudia', image: '/cflb-image/marraine.jpeg' },
-  { role: 'Parrain de l\'événement', nom: 'YARIS Kassim Rachad', image: null },
+  { role: 'Parrain de l\'événement', nom: 'YARIS Kassim Rachad', image: '/cflb-image/parrain.jpeg' },
 ]
 </script>
 
