@@ -173,8 +173,8 @@ const linkCols = [
     title: 'Contact',
     links: [
       { label: 'contact@glow-empire-agency.com', href: 'mailto:contact@glow-empire-agency.com' },
-      { label: '+229 01 98 52 38 79', href: 'tel:+2290198523879' },
-      { label: 'Devis sur WhatsApp', href: 'https://wa.me/2290198523879', external: true },
+      { label: '+229 01 98 52 38 70', href: 'tel:+2290198523870' },
+      { label: 'Devis sur WhatsApp', href: 'https://wa.me/2290198523870', external: true },
       { label: 'Zopha', href: null },
     ],
   },

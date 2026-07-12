@@ -278,7 +278,7 @@ onUnmounted(() => {
   scrollReveal.destroy()
 })
 
-const whatsappLink = 'https://wa.me/2290198523879?text=' +
+const whatsappLink = 'https://wa.me/2290198523870?text=' +
   encodeURIComponent('Bonjour Glow Empire, je souhaite être informée de la prochaine Conférence des Femmes Leaders du Bénin.')
 
 const stats = [
