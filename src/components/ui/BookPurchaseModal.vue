@@ -49,6 +49,11 @@
           </div>
 
           <!-- FOOTER sticky : email + payer -->
+          <div v-if="book.oldPrice" class="bpm-promo">
+            <span class="bpm-promo-old">{{ formatPrice(book.oldPrice) }}</span>
+            <span class="bpm-promo-new">{{ formatPrice(book.price) }}</span>
+            <span class="bpm-promo-badge">Offre spéciale</span>
+          </div>
           <div class="bpm-footer">
             <div class="bpm-field">
               <input
@@ -314,6 +319,38 @@ onBeforeUnmount(() => {
   transition: color 0.25s ease;
 }
 .bpm-already:hover { color: #7AD3FF; }
+
+/* Bandeau prix promotionnel */
+.bpm-promo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(2, 12, 26, 0.9);
+}
+.bpm-promo-old {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+}
+.bpm-promo-new {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #7AD3FF;
+}
+.bpm-promo-badge {
+  margin-left: auto;
+  padding: 0.22rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7AD3FF;
+  border: 1px solid rgba(122, 211, 255, 0.35);
+  background: rgba(122, 211, 255, 0.08);
+}
 
 /* FOOTER sticky */
 .bpm-footer {
