@@ -47,7 +47,7 @@
           <div class="mp-spam">
             📬 <strong>Pense à vérifier tes spams / courriers indésirables.</strong>
             L'email peut parfois s'y trouver. Ajoute
-            <strong>contact@glow-empire-agency.com</strong> à tes contacts pour ne plus le manquer.
+            <strong>support@glow-empire-agency.com</strong> à tes contacts pour ne plus le manquer.
           </div>
           <button class="mp-link" @click="sent = false">Utiliser un autre email</button>
         </template>

@@ -237,7 +237,7 @@ function scrollToBooks() {
 // Coordonnées
 const phoneRaw = '+2290198523870'
 const phoneDisplay = '+229 01 98 52 38 70'
-const email = 'contact@glow-empire-agency.com'
+const email = 'support@glow-empire-agency.com'
 const whatsappLink = 'https://wa.me/2290198523870?text=' +
   encodeURIComponent('Bonjour Glow Empire, je souhaite demander un devis.')
 

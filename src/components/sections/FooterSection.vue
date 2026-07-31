@@ -97,7 +97,7 @@
             © {{ currentYear }} Glow Empire. Tous droits réservés.
           </span>
           <div class="footer-bottom-links">
-            <a href="mailto:contact@glow-empire-agency.com" class="footer-bottom-link">contact@glow-empire-agency.com</a>
+            <a href="mailto:support@glow-empire-agency.com" class="footer-bottom-link">support@glow-empire-agency.com</a>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@ const linkCols = [
   {
     title: 'Contact',
     links: [
-      { label: 'contact@glow-empire-agency.com', href: 'mailto:contact@glow-empire-agency.com' },
+      { label: 'support@glow-empire-agency.com', href: 'mailto:support@glow-empire-agency.com' },
       { label: '+229 01 98 52 38 70', href: 'tel:+2290198523870' },
       { label: 'Devis sur WhatsApp', href: 'https://wa.me/2290198523870', external: true },
       { label: 'Zopha', href: null },
