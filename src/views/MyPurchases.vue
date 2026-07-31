@@ -56,7 +56,7 @@
       </div>
     </main>
 
-    <FooterSection />
+    <FooterSection id="footer" />
   </div>
 </template>
 

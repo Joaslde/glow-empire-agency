@@ -178,12 +178,12 @@
 
           <!-- Liens secondaires -->
           <div class="epage-cta-wrap">
-            <RouterLink to="/#books" class="epage-link-secondary" @click="scrollToBooks">
+            <button type="button" class="epage-link-secondary" @click="scrollToBooks">
               Découvrir les livres
               <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                 <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </RouterLink>
+            </button>
             <RouterLink to="/protagoniste" class="epage-link-secondary">
               Rencontrer Riquier Soussia
               <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -198,7 +198,7 @@
     </main>
 
     <!-- Même footer que la landing -->
-    <FooterSection />
+    <FooterSection id="footer" />
   </div>
 </template>
 
@@ -853,6 +853,11 @@ a.epage-contact-item:hover .epage-contact-value {
   text-decoration: none;
   font-weight: 300;
   transition: color 0.25s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
 }
 .epage-link-secondary:hover { color: rgba(255,255,255,0.75); }
 </style>

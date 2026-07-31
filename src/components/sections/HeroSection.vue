@@ -50,7 +50,7 @@
 
       <!-- Single liquid glass CTA -->
       <div class="hero-cta-wrap reveal-up" style="transition-delay: 0.95s">
-        <button class="hero-glass-btn">
+        <button class="hero-glass-btn" type="button" @click="goToEmpire">
           <span class="hero-glass-btn-inner">
             <span>Découvrir l'empire</span>
           </span>
@@ -62,12 +62,18 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const heroRef = ref(null)
 const isMobile = ref(false)
 
 function checkMobile() {
   isMobile.value = window.innerWidth < 768
+}
+
+function goToEmpire() {
+  router.push('/empire')
 }
 
 onMounted(() => {

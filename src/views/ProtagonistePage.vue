@@ -146,12 +146,12 @@
 
           <!-- CTA retour -->
           <div class="ppage-cta-wrap">
-            <RouterLink to="/#books" class="glass-cta ppage-cta" @click="scrollToBooks">
+            <button type="button" class="glass-cta ppage-cta" @click="scrollToBooks">
               <span>Découvrir les livres</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </RouterLink>
+            </button>
             <RouterLink to="/empire" class="ppage-link-secondary">
               Découvrir Glow Empire
               <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
@@ -166,7 +166,7 @@
     </main>
 
     <!-- Même footer que la landing -->
-    <FooterSection />
+    <FooterSection id="footer" />
   </div>
 </template>
 
@@ -545,6 +545,9 @@ function scrollToBooks() {
   font-weight: 500;
   color: rgba(255,255,255,0.9);
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   letter-spacing: 0.02em;
 }
 .ppage-link-secondary {
