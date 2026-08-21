@@ -109,6 +109,7 @@
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useRouter, RouterLink } from 'vue-router'
+import { scrollToSectionWhenReady } from '@/composables/useScrollToSection'
 import {
   PhInstagramLogo,
   PhYoutubeLogo,
@@ -135,14 +136,10 @@ onUnmounted(() => {
 function scrollTo(hash) {
   if (router.currentRoute.value.path !== '/') {
     router.push('/').then(() => {
-      setTimeout(() => {
-        const el = document.querySelector(hash)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 300)
+      scrollToSectionWhenReady(hash)
     })
   } else {
-    const el = document.querySelector(hash)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    scrollToSectionWhenReady(hash)
   }
 }
 

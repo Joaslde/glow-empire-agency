@@ -32,6 +32,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { scrollToSectionWhenReady } from '@/composables/useScrollToSection'
 import {
   PhHouseSimple,
   PhUser,
@@ -89,14 +90,10 @@ function navigate(href) {
   isOpen.value = false
   if (props.staticMode) {
     router.push('/' + href)
-    setTimeout(() => {
-      const el = document.querySelector(href)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }, 350)
+    scrollToSectionWhenReady(href)
     return
   }
-  const el = document.querySelector(href)
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
+  scrollToSectionWhenReady(href)
 }
 </script>
 

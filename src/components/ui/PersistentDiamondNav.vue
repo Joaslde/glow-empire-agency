@@ -106,6 +106,7 @@ import { TresCanvas } from '@tresjs/core'
 import { Environment } from '@tresjs/cientos'
 import { ACESFilmicToneMapping, SRGBColorSpace } from 'three'
 import DiamondModel from './DiamondModel.vue'
+import { scrollToSectionWhenReady } from '@/composables/useScrollToSection'
 
 // staticMode = pages intérieures (protagoniste, empire) : pas de #hero,
 // le diamant est sticky immédiatement et les liens renvoient vers la home.
@@ -152,14 +153,10 @@ function scrollTo(selector) {
   // Sur une page intérieure, on renvoie vers la home avec l'ancre.
   if (props.staticMode) {
     router.push('/' + selector)
-    setTimeout(() => {
-      const el = document.querySelector(selector)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }, 350)
+    scrollToSectionWhenReady(selector)
     return
   }
-  const el = document.querySelector(selector)
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
+  scrollToSectionWhenReady(selector)
 }
 
 function updatePosition() {

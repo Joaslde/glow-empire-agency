@@ -175,6 +175,7 @@ import { onMounted, onUnmounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useScrollReveal } from '@/composables/useScrollReveal'
 import { useLenis } from '@/composables/useLenis'
+import { scrollToSectionWhenReady } from '@/composables/useScrollToSection'
 import PersistentDiamondNav from '@/components/ui/PersistentDiamondNav.vue'
 import MobileMenu from '@/components/ui/MobileMenu.vue'
 import FooterSection from '@/components/sections/FooterSection.vue'
@@ -195,10 +196,7 @@ onUnmounted(() => {
 
 function scrollToBooks() {
   router.push('/').then(() => {
-    setTimeout(() => {
-      const el = document.querySelector('#books')
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }, 300)
+    scrollToSectionWhenReady('#books')
   })
 }
 </script>
