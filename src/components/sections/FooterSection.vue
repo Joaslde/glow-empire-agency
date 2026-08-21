@@ -96,13 +96,10 @@
           <span class="footer-copyright">
             © {{ currentYear }} Glow Empire. Tous droits réservés.
           </span>
-          <div class="footer-bottom-links">
-            <a href="mailto:support@glow-empire-agency.com" class="footer-bottom-link">support@glow-empire-agency.com</a>
-            <span class="footer-bottom-sep">·</span>
-            <a href="https://joas-eight.vercel.app/" target="_blank" rel="noopener" class="footer-bottom-link">
-              Design &amp; code par Joas Lde
-            </a>
-          </div>
+          <a href="https://joas-eight.vercel.app/" target="_blank" rel="noopener" class="footer-signature">
+            <span class="footer-signature-label">Design &amp; code par</span>
+            <span class="footer-signature-name">Joas Lde</span>
+          </a>
         </div>
       </div>
     </div>
@@ -437,22 +434,38 @@ const linkCols = [
   color: rgba(255, 255, 255, 0.25);
   font-weight: 300;
 }
-.footer-bottom-links {
-  display: flex;
+
+.footer-signature {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-}
-.footer-bottom-link {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.25);
+  gap: 0.55rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 100px;
   text-decoration: none;
-  transition: color 0.25s ease;
+  border: 1px solid rgba(122, 211, 255, 0.25);
+  background: rgba(122, 211, 255, 0.06);
+  transition: all 0.3s ease;
 }
-.footer-bottom-link:hover {
-  color: rgba(255, 255, 255, 0.55);
+.footer-signature:hover {
+  border-color: rgba(122, 211, 255, 0.5);
+  background: rgba(122, 211, 255, 0.12);
+  transform: translateY(-1px);
 }
-.footer-bottom-sep {
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.15);
+.footer-signature-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 300;
+}
+.footer-signature-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #7AD3FF;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(122, 211, 255, 0.4);
+}
+.footer-signature:hover .footer-signature-name {
+  text-decoration-color: #7AD3FF;
 }
 </style>
