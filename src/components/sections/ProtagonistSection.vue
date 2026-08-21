@@ -21,10 +21,15 @@
             <span class="prot-stat-number">+100</span>
             <span class="prot-stat-label">personnes accompagnées</span>
           </div>
-          <div class="prot-stat prot-stat-2 glass-liquid reveal-up" style="transition-delay:0.5s">
+          <button
+            type="button"
+            class="prot-stat prot-stat-2 prot-stat-link glass-liquid reveal-up"
+            style="transition-delay:0.5s"
+            @click="scrollToBooks"
+          >
             <span class="prot-stat-number">3</span>
             <span class="prot-stat-label">livres publiés</span>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -78,6 +83,11 @@ const router = useRouter()
 function goToProtagoniste() {
   router.push('/protagoniste')
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+function scrollToBooks() {
+  const el = document.querySelector('#books')
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
@@ -175,6 +185,11 @@ function goToProtagoniste() {
 .prot-stat-2 {
   top: 2rem;
   right: -1.5rem;
+}
+.prot-stat-link {
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
 }
 .prot-stat-number {
   font-size: 1.5rem;
