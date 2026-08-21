@@ -98,6 +98,10 @@
           </span>
           <div class="footer-bottom-links">
             <a href="mailto:support@glow-empire-agency.com" class="footer-bottom-link">support@glow-empire-agency.com</a>
+            <span class="footer-bottom-sep">·</span>
+            <a href="https://joas-eight.vercel.app/" target="_blank" rel="noopener" class="footer-bottom-link">
+              Design &amp; code par Joas Lde
+            </a>
           </div>
         </div>
       </div>
